@@ -18,4 +18,24 @@ function showMap(){
         .openPopup();
 }
 
-showMap()
+
+
+function showHomePage() {
+    app.innerHTML = homePage;
+    showMap();
+}
+function showSearch() {
+    app.innerHTML = searchPage;
+}
+
+
+const router = new Navigo(null, true, '#!');
+
+router
+    .on("/home", showHomePage)
+    .on("/search", showSearch)
+    /*.on("/specialita", showSpecialita)
+    .on("/gallery", showGallery)
+    .on("/contatti", showContattaci)*/
+    .on("*", showHomePage)
+    .resolve();
