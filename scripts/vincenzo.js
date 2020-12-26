@@ -18,24 +18,37 @@ function showMap(){
         .openPopup();
 }
 
-
-
 function showHomePage() {
     app.innerHTML = homePage;
     showMap();
-}
-function showSearch() {
-    app.innerHTML = searchPage;
+    let searchButton = document.getElementById('searchButton');
+    console.log(searchButton);
+    searchButton.onclick = () => goToSearch();
 }
 
+function showSearch() {
+    app.innerHTML = searchPage;
+    let backToHome = document.getElementById('backToHome');
+    console.log(backToHome);
+    backToHome.onclick = () => goToHome(); 
+}
+
+function goToHome(){
+    let route = '/home';
+    router.navigate(route);
+    return false;
+}
+
+function goToSearch(){
+    let route = '/search';
+    router.navigate(route);
+    return false;
+}
 
 const router = new Navigo(null, true, '#!');
 
 router
     .on("/home", showHomePage)
     .on("/search", showSearch)
-    /*.on("/specialita", showSpecialita)
-    .on("/gallery", showGallery)
-    .on("/contatti", showContattaci)*/
     .on("*", showHomePage)
     .resolve();

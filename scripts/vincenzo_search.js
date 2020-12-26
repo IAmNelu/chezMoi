@@ -4,7 +4,7 @@ const searchPage = `<header class="mb-10">
         <nav class="navbar-light bg-light py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-3 m-2"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
+                    <div class="col-3 m-2" href="#!/home" id="backToHome"><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
                 </div>
             </div>
         </nav>

@@ -6,7 +6,7 @@ const homePage = `
         <form class="form-inline">
             <button class="btn btn-outline-success col-2 mr-1" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             <input class="form-control col-7" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success col-2 ml-1" href="#!/search"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <button class="btn btn-outline-success col-2 ml-1" href="#!/search" id="searchButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
         </form>
     </div>
     
