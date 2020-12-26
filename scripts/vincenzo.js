@@ -31,6 +31,12 @@ function showSearch() {
     backToHome.onclick = () => goToHome(); 
 }
 
+function showLogin() {
+    app.innerHTML = loginPage;
+    let loginForm = document.getElementById('loginForm');
+    loginForm.onsubmit = () => goToHome(); 
+}
+
 function goToHome(){
     let route = '/home';
     router.navigate(route);
@@ -48,5 +54,6 @@ const router = new Navigo(null, true, '#!');
 router
     .on("/home", showHomePage)
     .on("/search", showSearch)
-    .on("*", showHomePage)
+    .on("/login", showLogin)
+    .on("*", showLogin)
     .resolve();
