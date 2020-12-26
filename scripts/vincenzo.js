@@ -22,14 +22,12 @@ function showHomePage() {
     app.innerHTML = homePage;
     showMap();
     let searchButton = document.getElementById('searchButton');
-    console.log(searchButton);
     searchButton.onclick = () => goToSearch();
 }
 
 function showSearch() {
     app.innerHTML = searchPage;
     let backToHome = document.getElementById('backToHome');
-    console.log(backToHome);
     backToHome.onclick = () => goToHome(); 
 }
 

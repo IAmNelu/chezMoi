@@ -1,0 +1,129 @@
+<!-- -> 
+    ->Schermata log in [a]
+    ->Schermate guest (home):
+    -> home [a]
+    - aggiungere Serach in cima
+    - metti mapa sotto il Serach
+    - dive con lo schifo dentro sempre camnbia
+    -footer, menu navbar come negli scketch 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chezMoi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://use.fontawesome.com/2093e44b3e.js"></script>
+
+    <script src="./scripts/valentin.js"></script>
+    <link rel="stylesheet" href="styles/valentin.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    
+    <script src="https://unpkg.com/navigo@6"></script>
+
+</head>
+
+<body>
+
+    <!-- Search bar -->
+    <div class="d-flex justify-content-center m-3">
+        <img src="images/logo.png" class="col-10">
+    </div>
+    
+    <section class="">
+        <form class="">
+          <div class="form-group text-center justify-content-center col-10">
+            <label for="usr">username</label>
+            <input type="text" class="form-control" id="usr" placeholder="your username">
+          </div>
+          <div class="form-group text-center justify-content-center col-10">
+            <label for="pw">password</label>
+            <input type="text" class="form-control" id="pw" placeholder="your password">
+          </div>
+            
+            
+          <div class="form-group row">
+            <label for="ratings" class="col-6">Ratings</label>
+            <select class="form-control col-5" id="ratings">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+            <div class="form-group row">
+            <label for="maxPrice" class="col-6">Maximum price</label>
+            <input type="number" class="form-control col-5" id="maxPrice" placeholder="30€">
+          </div>
+            <div class="form-group row">
+            <label for="guests" class="col-6">Guests</label>
+            <input type="number" class="form-control col-5" id="guests" placeholder="number of guests">
+          </div>
+          <div>Special needs</div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Vegetarian
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Vegan
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Nut allergy
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Shellfish allergy
+              </label>
+            </div>
+            
+            <nav class="navbar-light bg-light fixed-bottom">
+                <div class="container">
+                    <div class="row float-right">
+                        <button type="submit" class="btn btn-primary m-3">Search</button>
+                    </div>
+                </div>
+            </nav>
+        </form>
+    </section>
+    
+    
+    <script src="./scripts/vincenzo.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+
+</html>
