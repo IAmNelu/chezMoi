@@ -49,4 +49,30 @@
 
 .margin_bootom_big{
     padding-bottom: 5.5em;
+
 }
+
+.margin_bootom_big * {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
+.screen_title{
+    text-align: center;
+}
+
+#EventDescriptionInput{
+    width: 100%;
+}
+#EventNameInput{
+    width: 100%; 
+}
+
+#EventGuestsInput, #EventPriceInput{
+    text-align: right;
+}
+h2{
+    color: #342628;
+}
+/* #EventPriceInput{
+    text-align: right;
+} */
