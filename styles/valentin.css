@@ -73,6 +73,11 @@
 h2{
     color: #342628;
 }
-/* #EventPriceInput{
-    text-align: right;
-} */
+
+.tags{
+    padding-left: 1em;
+}
+
+.back_arrow{
+    margin-top: .8em;;
+}
