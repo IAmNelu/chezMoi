@@ -29,7 +29,7 @@
     <div class="container margin_centered">
         <header>
             <div class="row py-2">
-                <i class="fa fa-arrow-left col-1 back_arrow" aria-hidden="true"></i>
+                <i class="fa fa-arrow-left back_arrow" id="back" aria-hidden="true"></i>
                 <h2 class="screen_title col-10">Payment</h2>
             </div>
             <div class="col-12 text-center">
@@ -46,17 +46,18 @@
 
             </div>
             <div class="container py-2">
-                <form action="">
+                <form action="" id="booking_form">
                     <div class="form-group">
 
 
                         <div class="row mt-3">
                             <label for="BookingGuestInput" class="col-7 text-center">Number of guests:</label>
-                            <input placeholder="1" class="col-4" type="number" min="1" max="4" name="BookingGuestInput"
-                                id="BookingGuestInput" required>
+                            <select class="col-4" name="BookingGuestInput" id="BookingGuestInput" required>
+                                <option class="active" value="1">1</option>
+                            </select>
                         </div>
                         <div>
-                            <h3 id="total" class="text-center">
+                            <h3 id="total_price" class="text-center">
                                 Price: 10€
                             </h3>
                         </div>
@@ -126,6 +127,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="row justify-content-center">
+
+                                            <button type="submit" id="submit"
+                                                class="btn btn-primary col-sm-6">Book</button>
+                                        </div>
 
                                     </div> <!-- End -->
                                     <!-- Paypal info -->
@@ -136,8 +142,8 @@
                                                 class="radio-inline">
                                                 <input type="radio" name="optradio" class="ml-5">International </label>
                                         </div>
-                                        <p> <button type="button" class="btn btn-primary "><i
-                                                    class="fab fa-paypal mr-2"></i> Log into my Paypal</button> </p>
+                                        <p> <button type="button" id="submit_paypal" class="btn btn-primary "><i
+                                                    class="fa fa-paypal mr-2"></i> Log into my Paypal</button> </p>
                                         <p class="text-muted"> Note: After clicking on the button, you will be
                                             directed to a secure gateway for payment. After completing the payment
                                             process, you will be redirected back to the website to view details of
@@ -147,10 +153,6 @@
 
                                 </div>
                             </div>
-                        </div>
-                        <div class="row justify-content-center">
-
-                            <button type="submit" class="btn btn-primary col-sm-6">Book</button>
                         </div>
                 </form>
         </header>

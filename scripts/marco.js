@@ -1,16 +1,14 @@
 'use strict';
 
 //TODO: implement getProductInfo and set price/guest_possible properly, once decided the DB to use
-//TODO: implement header images as carousel/support for multiple images
 //TODO: implement properly backToMenu, once merged all
 
-//TODO: fix allergenes list shown
-//TODO: guest values
-//TOFIX: Price shown first with <br>
-//TODO: show properly acceptance page
+//TODO: implement header images as carousel/support for multiple images
 
+//TODO maybe(?): add Host rating in info under meal
 
-//Proposta: set guests as select
+//TODO: route have to scroll up teh page
+
 
 let price = 0
 let guest_possible = 0
@@ -98,7 +96,7 @@ function backToMenu() {
 function toPayment() {
     let b = document.getElementById("book")
     b.onclick = () => {
-        price = document.getElementById("price").innerText.split('€')[0]
+        price = document.getElementById("price").innerText.split('\n')[1].split('€')[0]
         guest_possible = document.getElementById("guests").innerText.split('/')[1] - document.getElementById("guests").innerText.split('/')[0]
         let route = '/book';
         router.navigate(route);
@@ -116,7 +114,9 @@ function showBooking() {
 function setMaxGuests() {
     let form = document.forms[0];
     let guests = form.elements["BookingGuestInput"]
-    guests.setAttribute("max", guest_possible);
+    for (let i = 1; i < guest_possible; i++) {
+        guests.options[guests.options.length] = new Option(i + 1, i + 1);
+    }
     guests.onchange = () => {
         //form.checkValidity()
         let n = guests.value
@@ -126,7 +126,7 @@ function setMaxGuests() {
 }
 
 function setPriceAndUpdate(p) {
-    document.getElementById("total_price").innerText = "Price: " + p + "€"
+    document.getElementById("total_price").innerText = "Price: \n" + p + "€"
 }
 
 function handlePayment() {

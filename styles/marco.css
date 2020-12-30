@@ -52,9 +52,6 @@ body{
     padding-right: 0.2em;
 }
 
-.screen_title{
-    text-align: center;
-}
 
 #EventDescriptionInput{
     width: 100%;
@@ -95,4 +92,8 @@ nav {
 
   .round {
     border-radius: 50%;
+  }
+
+  ul{
+    list-style-position: inside;
   }

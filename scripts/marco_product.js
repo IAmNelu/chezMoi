@@ -70,8 +70,8 @@ const product = `
             <header class="text-center">
                 <h4> Allergenes</h4>
             </header>
-            <ul>
-                <div class="row">
+            <ul class="text-center">
+                <div class="row mx-2">
                     <li class="col-4">Meat</li>
                     <li class="col-4">Meat</li>
                     <li class="col-4">Meat</li>

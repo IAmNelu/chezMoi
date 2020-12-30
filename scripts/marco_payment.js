@@ -3,9 +3,9 @@
 const booking = `
 <div class="container margin_centered">
         <header>
-            <div class="row py-2">
-                <i class="fa fa-arrow-left back_arrow" id="back" aria-hidden="true"></i>
-                <h2 class="screen_title col-10">Payment</h2>
+            <div class="row pt-2">
+                <i class="fa fa-arrow-left back_arrow mx-2" id="back" aria-hidden="true"></i>
+                <h2 class="text-center col-10">Payment</h2>
             </div>
             <div class="col-12 text-center">
                 <span>
@@ -27,8 +27,10 @@ const booking = `
 
                         <div class="row mt-3">
                             <label for="BookingGuestInput" class="col-7 text-center">Number of guests:</label>
-                            <input class="col-4" type="number" min="1" max="4" name="BookingGuestInput"
+                            <select class="col-4" name="BookingGuestInput"
                                 id="BookingGuestInput" required>
+                                <option class="active" value="1">1</option>
+                            </select>
                         </div>
                         <div>
                             <h3 id="total_price" class="text-center">
