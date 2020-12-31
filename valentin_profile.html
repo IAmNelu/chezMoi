@@ -1,0 +1,160 @@
+<!-- -> Schermata Profilo Host [b]
+->Schermate host (main): [b] fatto
+-> home: Schermata Profilo Host [similar as before]
+- navbar che permette di diventare anche guest
+- create event/ user interaction/switch place
+-> schermata create / edit -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>placeholder</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://use.fontawesome.com/2093e44b3e.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="./scripts/valentin.js"></script>
+    <link rel="stylesheet" href="styles/valentin.css">
+</head>
+
+<body>
+    <header class="main_location_pic">
+
+    </header>
+
+    <div class="container margin_bootom_big">
+        <div class="avatar_profile"></div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="profile_name">Cooking MAMA <span class="rating">4.9<i class="fa fa-star"
+                            aria-hidden="true"></i></span></h1>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+        <article>
+            <div class="row">
+                <div class="col-7">
+                    <h4>About ME</h4>
+                </div>
+                <div class="col-5 text-right">
+                    <h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</h4>
+                </div>
+            </div>
+            <div id="small_description">
+                <div class="row">
+                    <p class="col-12">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus
+                        blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum
+                        sit
+                    </p>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-light" type="button" data-toggle="collapse"
+                            onclick="hide_small_description()" data-target="#collapseDescription" aria-expanded="false"
+                            aria-controls="showFullDescription">
+                            Show More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse" id="collapseDescription">
+                <div class="row">
+                    <p class="col-12">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus
+                        blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum
+                        sit
+                        iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil
+                        consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam
+                        reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo
+                        atque
+                        illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate,
+                        id
+                        quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus
+                        corrupti
+                        fugiat ea doloremque. Commodi iusto alias fugit laborum facere.
+                    </p>
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12 text-center">
+                        <button class="btn btn-light" type="button" data-toggle="collapse"
+                            data-target="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription"
+                            onclick="show_small_description()">
+                            Show Less
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="card mb-3">
+            <div class="row">
+                <div class="col-6">
+                    <div class="image_card" id="chicken_img"></div>
+                </div>
+                <div class="col-6">
+                    <h3>Chicken</h3>
+                    <div class="row">
+                        <p class="col-6">10 €</p>
+                        <p class="col-6">4/6 <i class="fa fa-user" aria-hidden="true"></i></p>
+                    </div>
+                    <p class="incard_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
+                        architecto?</p>
+
+                </div>
+            </div>
+        </article>
+        <article class="card mb-3">
+            <div class="row">
+                <div class="col-6">
+                    <div class="image_card" id="fish_img"></div>
+                </div>
+                <div class="col-6">
+                    <h3>Fish</h3>
+                    <div class="row">
+                        <p class="col-6">15 €</p>
+                        <p class="col-6">1/8 <i class="fa fa-user" aria-hidden="true"></i></p>
+                    </div>
+                    <p class="incard_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
+                        architecto?</p>
+
+                </div>
+            </div>
+        </article>
+    </div>
+    <footer>
+        <nav class="navbar-light bg-light fixed-bottom py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
+                    </div>
+                    <div class="col text-center"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
+                        Event
+                    </div>
+                    <div class="col text-center"><i class="fa fa-comments-o btn_ico" aria-hidden="true"></i><br>Messages
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </footer>
+</body>
+
+</html>

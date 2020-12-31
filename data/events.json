@@ -1,0 +1,26 @@
+{
+    "event_cooking_mama_events": [
+        {
+            "name": "Chicken",
+            "price": 10,
+            "max_guests": 6,
+            "actual_guests": 4,
+            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?",
+            "date": "01/01/2021",
+            "long": "",
+            "lat": "",
+            "picture": "../images/chicken_meal.jpg"
+        },
+        {
+            "name": "Fish",
+            "price": 10,
+            "max_guests": 8,
+            "actual_guests": 1,
+            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?,",
+            "date": "01/01/2021",
+            "long": "",
+            "lat": "",
+            "picture": "../images/fish_meal.png"
+        }
+    ]
+}

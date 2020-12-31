@@ -1,6 +1,6 @@
 .main_location_pic{
     width: 100%;
-    background-image: url("../images/app_cooking_mama.jpg");
+    /* background-image: url("../images/app_cooking_mama.jpg"); */
     background-position: center;/* Do not repeat the image */
     background-size: cover;/* Resize the background image to cover the entire container */
 }
@@ -11,7 +11,7 @@
     width: 50%;
     margin: auto;
     z-index: 10;
-    background-image: url("../images/profile_cooking_mama.png");
+    /* background-image: url("../images/profile_cooking_mama.png"); */
     background-position: center;/* Do not repeat the image */
     background-size: cover;/* Resize the background image to cover the entire container */
 
@@ -30,14 +30,6 @@
     font-size: 10pt;
 }
 
-
-#chicken_img{
-    background-image: url("../images/chicken_meal.jpg");
-}
-
-#fish_img{
-    background-image: url("../images/fish_meal.png");
-}
 
 .btn{
     box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
@@ -60,7 +52,7 @@
     text-align: center;
 }
 
-#EventDescriptionInput{
+#EventDescriptionInput, #form_description_area{
     width: 100%;
 }
 #EventNameInput{
