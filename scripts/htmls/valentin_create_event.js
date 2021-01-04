@@ -2,10 +2,10 @@ function get_create_page() {
     const page = `<div class="container margin_bootom_big">
     <header>
         <div class="row py-2">
-            <i class="fa fa-arrow-left col-1 back_arrow" aria-hidden="true"></i>
+            <i id="go_back" class="fa fa-arrow-left col-1 back_arrow" aria-hidden="true"></i>
             <h2 class="screen_title col-10">Create Your Event</h2>
         </div>
-        <form action="">
+        <form id="_create_event_form">
             <div class="form-group">
                 <div class="row mt-2">
                     <label for="EventNameInput">Name</label>
@@ -68,8 +68,7 @@ function get_create_page() {
                 </div>
             </div>
             <div class="row justify-content-center">
-
-                <button type="submit" class="btn btn-primary col-sm-6">Crete Event</button>
+                <button id="btn_create_event" type="button" class="btn btn-primary col-sm-6">Crete Event</button>
             </div>
         </form>
     </header>

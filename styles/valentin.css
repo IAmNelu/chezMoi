@@ -26,7 +26,7 @@
     background-size: cover;/* Resize the background image to cover the entire container */
 }
 
-.incard_description{
+.incard_description, .incard_date{
     font-size: 10pt;
 }
 
@@ -73,3 +73,8 @@ h2{
 .back_arrow{
     margin-top: .8em;;
 }
+
+.edit_btn{
+    box-shadow: none;
+}
+

@@ -83,12 +83,12 @@ function getUserPage(userObj) {
     return user
 }
 
-function getOneEvent(eventObj, number, user_id) {
+function getOneEvent(eventObj) {
     const event = `
-    <article id="art_${number}_event_${user_id}" class="card mb-3">
+    <article id="art_${eventObj.id}" class="card mb-3">
             <div class="row">
                 <div class="col-6">
-                    <div class="image_card" id="img_${number}_event_${user_id}"></div>
+                    <div class="image_card" id="img_${eventObj.id}"></div>
                 </div>
                 <div class="col-6">
                     <h3>${eventObj.name}</h3>
@@ -97,6 +97,10 @@ function getOneEvent(eventObj, number, user_id) {
                         <p class="col-6">${eventObj.actual_guests}/${eventObj.max_guests} <i class="fa fa-user" aria-hidden="true"></i></p>
                     </div>
                     <p class="incard_description">${eventObj.Description}</p>
+                    <div class="row d-flex justify-content-between">
+                        <span class=" col-6 incard_date align-self-center">${eventObj.date}</span>
+                        <button class="col-5  mb-1 mr-2 btn btn-light align-self-center edit_btn" onclick="event.stopPropagation(); edit_event('${eventObj.id}');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
+                    </div>
                 </div>
             </div>
         </article>`
