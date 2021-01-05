@@ -8,8 +8,10 @@
             "actual_guests": 4,
             "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?",
             "date": "01/01/2021",
+            "hour": "12:00",
             "long": "",
             "lat": "",
+            "full_address": "",
             "picture": "../images/chicken_meal.jpg",
             "tags": []
         },
@@ -21,8 +23,10 @@
             "actual_guests": 1,
             "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?,",
             "date": "01/01/2021",
+            "hour": "18:00",
             "long": "",
             "lat": "",
+            "full_address": "",
             "picture": "../images/fish_meal.png",
             "tags": []
         }

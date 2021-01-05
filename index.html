@@ -4,34 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cheMoi</title>
+    <title>chezMoi</title>
+
+    <!-- Font fontawesome -->
+    <script src="https://use.fontawesome.com/2093e44b3e.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Leaflet (CSS+JS)-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <!--Router-->
+    <script src="https://unpkg.com/navigo@6"></script>
+    <!-- <script src="//unpkg.com/navigo"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/navigo/8.0.1/navigo.min.js"
+        integrity="sha512-uYHh+S6ScJzHgfeHUooHxF/mw7Y4OsU+QfzjtM/c0p9g6CD4WLaVW69FDXi9fSB/OqWcTJl0+kTaLtWD3CIQ3Q=="
+        crossorigin="anonymous"></script> -->
+    <!--Bootstrap 4 Style-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--Bootstrap 4 (pooper & bootstrap)js-->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!--Personal style sheets-->
+    <link rel="stylesheet" href="styles/valentin.css">
+    <link rel="stylesheet" href="styles/marco.css">
+
+
+
+    <!-- <script src="./scripts/valentin.js"></script> -->
+    <script src="scripts/htmls/login.js"></script>
+    <script src="scripts/htmls/home_g.js"></script>
+    <script src="scripts/htmls/search.js"></script>
+    <script src="scripts/htmls/host_profile.js"></script>
+    <script src="scripts/htmls/create_event.js"></script>
+    <script src="scripts/htmls/host_show_event.js"></script>
+    <script src="scripts/utilities.js"></script>
+
 </head>
 
 <body>
-
-
-    ->Schermata log in [a]
-
-    ->Schermate guest (home):
-    -> home [a]
-    - aggiungere Serach in cima
-    - metti mapa sotto il Serach
-    - dive con lo schifo dentro sempre camnbia
-    -footer, menu navbar coem negli scketch
-    -> Podotto (far sparire header serach e footer nav) [c]
-    -> Schermata Profilo Host [b]
-    -> Schermata Booking [c]
-    -> Schermata Profilo Guest [optional] [c]
-
-    ->Schermate host (main): [b]
-    -> home: Schermata Profilo Host [similar as before]
-    - navbar che permette di diventare anche guest
-    - create event/ user interaction/switch place
-    -> schermata create / edit
-
-    a = Vincenzo
-    b = Valentin
-    c = Marco
+    <div id="app"></div>
+    <script src="scripts/main.js"></script>
 </body>
 
 

@@ -18,8 +18,6 @@ function adjust_profile() {
     } else {
         prof_av.css('margin-top', '-16em');
     }
-
-
 }
 
 function adjust_header() {

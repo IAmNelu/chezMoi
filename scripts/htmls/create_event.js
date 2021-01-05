@@ -91,3 +91,12 @@ function get_create_page() {
     </footer>`
     return page;
 }
+
+function add_event_listeners_create() {
+    $('#go_back').click(goHostProfile);
+    $("#btn_create_event").click(() => {
+        let mesg = add_newEvent();
+        if (mesg == 'OK') goHostProfile();
+        else alert(mesg);
+    });
+}

@@ -120,3 +120,40 @@ function getForm(description, id) {
 </form>`;
     return form;
 }
+
+
+function _set_imgs_profile(propic_l, bck_l) {
+    let pl = `url("${propic_l}")`;
+    let bl = `url("${bck_l}")`;
+    $(".main_location_pic").first().css("background-image", bl);
+    $(".avatar_profile").first().css("background-image", pl);
+}
+
+
+function _set_events(events_arr) {
+    let events_container = $("#events");
+
+    if (!events_arr | events_arr.length == 0) {
+        //error no events
+    } else {
+        let _events = "";
+        for (let _i = 0; _i < events_arr.length; _i++) {
+            const element = events_arr[_i];
+            _events += getOneEvent(element);
+        }
+        events_container.html(_events);
+        for (let _i = 0; _i < events_arr.length; _i++) { //adding images with css after objs are created
+            const element = `url("${events_arr[_i].picture}")`;
+            let im_id = `#img_${events_arr[_i].id}`;
+            $(im_id).css("background-image", element);
+            let art_id = `#art_${events_arr[_i].id}`;
+            $(art_id).click(_ => goToShowEvents(events_arr[_i].id))
+            //TODO: ADD FUNCTION TO CLICK AND SHOW EVENT
+        }
+
+    }
+}
+
+function add_event_listeners_host() {
+    $('#add_new_event').click(goHostCreateEvent);
+}
