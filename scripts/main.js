@@ -12,15 +12,7 @@ mySS = window.sessionStorage;
 //     mySS.setItem('hosts', JSON.stringify(keys));
 //     return;
 // });
-// $.getJSON("/data/events.json", function (json) {
-//     let keys = Object.keys(json)
-//     for (let _i = 0; _i < keys.length; _i++) {
-//         const k = keys[_i];
-//         const v = JSON.stringify(json[k]);
-//         mySS.setItem(k, v);
-//     }
-//     return;
-// });
+
 
 let logged_in = "";
 
