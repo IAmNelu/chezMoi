@@ -15,43 +15,7 @@ const homePageUser = `
         <div id="mapid" style=" height: 300px; max-width: 500px "></div>
     </div>
     
-    
-    <div class="container margin_bootom_big">
-        <article class="card mb-3">
-            <div class="row">
-                <div class="col-6">
-                    <div class="image_card" id="chicken_img"></div>
-                </div>
-                <div class="col-6">
-                    <h3>Chicken</h3>
-                    <div class="row">
-                        <p class="col-6">10 €</p>
-                        <p class="col-6">4/6 <i class="fa fa-user" aria-hidden="true"></i></p>
-                    </div>
-                    <p class="incard_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
-                        architecto?</p>
-
-                </div>
-            </div>
-        </article>
-        <article class="card mb-3">
-            <div class="row">
-                <div class="col-6">
-                    <div class="image_card" id="fish_img"></div>
-                </div>
-                <div class="col-6">
-                    <h3>Fish</h3>
-                    <div class="row">
-                        <p class="col-6">15 €</p>
-                        <p class="col-6">1/8 <i class="fa fa-user" aria-hidden="true"></i></p>
-                    </div>
-                    <p class="incard_description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
-                        architecto?</p>
-
-                </div>
-            </div>
-        </article>
-    </div>
+    <div id="guest_events"></div>
     
     <footer>
         <nav class="navbar-light bg-light fixed-bottom py-3">
@@ -69,3 +33,47 @@ const homePageUser = `
             </div>
         </nav>
     </footer>`;
+
+
+    function _set_events_guest(events_arr) {
+        let events_container = $("#guest_events");
+    
+        if (!events_arr | events_arr.length == 0) {
+            //error no events
+        } else {
+            let _events = "";
+            for (let _i = 0; _i < events_arr.length; _i++) {
+                const element = events_arr[_i];
+                _events += getOneEvent(element);
+            }
+            events_container.html(_events);
+            for (let _i = 0; _i < events_arr.length; _i++) { //adding images with css after objs are created
+                const element = `url("${events_arr[_i].picture}")`;
+                let im_id = `#img_${events_arr[_i].id}`;
+                $(im_id).css("background-image", element);
+                let art_id = `#art_${events_arr[_i].id}`;
+                $(art_id).click(_ => goToShowEvents(events_arr[_i].id))
+                //TODO: ADD FUNCTION TO CLICK AND SHOW EVENT
+            }
+    
+        }
+    }
+
+function get_events_guests(){
+    var events = [],
+    keys = Object.keys(mySS),
+    i = keys.length;
+
+    while ( i-- ) {
+        try {
+            let item = JSON.parse( mySS.getItem(keys[i]) );
+            if ( item.events ){
+                events.push( item.events );
+            }
+          }
+          catch(err) {
+            console.log('not a JSON');
+          }
+    }
+    return events[0]
+}

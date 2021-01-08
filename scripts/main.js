@@ -7,7 +7,7 @@ mySS = window.sessionStorage;
 //         const k = keys[_i];
 //         const v = JSON.stringify(json[k]);
 //         mySS.setItem(k, v);
-
+//
 //     }
 //     mySS.setItem('hosts', JSON.stringify(keys));
 //     return;
@@ -33,10 +33,11 @@ function showHome() {
     } else {
         app.innerHTML = homePageUser;
         showMap();
+        let events = get_events_guests();
+        _set_events_guest(events);
         let searchButton = document.getElementById('searchButton');
         searchButton.onclick = () => goToSearch();
     }
-
 }
 
 function showLogin() {
