@@ -17,6 +17,9 @@
 
 }
 
+.disable{
+    color: silver;
+}
 
 body{
     width: 100%;
