@@ -88,7 +88,7 @@ function getOneEvent(eventObj) {
     <article id="art_${eventObj.id}" class="card mb-3">
             <div class="row">
                 <div class="col-6">
-                    <div class="image_card" id="img_${eventObj.id}"></div>
+                    <div class="image_card " id="img_${eventObj.id}"></div>
                 </div>
                 <div class="col-6">
                     <h3>${eventObj.name}</h3>
@@ -98,7 +98,12 @@ function getOneEvent(eventObj) {
                     </div>
                     <p class="incard_description">${eventObj.Description}</p>
                     <div class="row d-flex justify-content-between">
-                        <span class=" col-6 incard_date align-self-center">${eventObj.date}</span>
+                        <div>
+                            <span class=" col-6 incard_date align-self-center">${eventObj.date}</span><br>
+                            <span class=" col-6 incard_date align-self-center">${eventObj.hour} <i class="fa fa-clock-o"></i>
+                            </span>
+                        </div>
+                        
                         <button class="col-5  mb-1 mr-2 btn btn-light align-self-center edit_btn" onclick="event.stopPropagation(); edit_event('${eventObj.id}');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
                     </div>
                 </div>
@@ -156,4 +161,12 @@ function _set_events(events_arr) {
 
 function add_event_listeners_host() {
     $('#add_new_event').click(goHostCreateEvent);
+}
+
+function hide_small_description() {
+    $('#small_description').hide();
+}
+
+function show_small_description() {
+    $('#small_description').show();
 }
