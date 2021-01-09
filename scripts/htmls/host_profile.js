@@ -68,7 +68,7 @@ function getUserPage(userObj) {
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col text-center"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
+                    <div class="col text-center" id="become_guest"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
                     </div>
                     <div class="col text-center" id="add_new_event"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
                         Event
@@ -161,6 +161,9 @@ function _set_events(events_arr) {
 
 function add_event_listeners_host() {
     $('#add_new_event').click(goHostCreateEvent);
+    $('#become_guest').click(_ => {
+        goToHome();
+    });
 }
 
 function hide_small_description() {
