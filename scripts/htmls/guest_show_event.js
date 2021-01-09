@@ -1,12 +1,12 @@
 'use strict'
 
-const product = `
+function get_guest_show_event(ev, usr) {
+    return `
 <header class="main_location_pic">
         <button class="previous round px-2 py-1 ml-3 mt-3" id="back">
             <i class="fa fa-arrow-left " aria-hidden="true"></i>
         </button>
 
-        <!-- <img class="main_location_pic" src="./images/app_cooking_mama.jpg" alt="Cooking Mama User Appertment"> -->
     </header>
     <div class="avatar_profile "></div>
     <div class="container margin_bootom_big margin_centered">
@@ -18,13 +18,14 @@ const product = `
                         <span>
                             <i class="fa fa-heart-o text-left fa-2x" id="favourite" aria-hidden="true"></i>
                             <h1 class="profile_name text-center">
-                                Chicken
+                                ${ev.name}
                             </h1>
                         </span><br>
                         <div class="text-center">
-                            <i class="fa fa-clock-o"></i>20:00 -
-                            <i class="fa fa-calendar"></i> 15/01/2021<br>
-                            <i class="fa fa-map"></i> 221b, Baker Street
+                        <i class="fa fa-star"></i> ${usr.ratings} <br>
+                            <i class="fa fa-clock-o"></i>${ev.hour} -
+                            <i class="fa fa-calendar"></i> ${ev.date}<br>
+                            <i class="fa fa-map"></i> ${usr.addresses[ev.adr].full_address}<br>
                         </div>
 
                     </div>
@@ -38,18 +39,7 @@ const product = `
             <div id="Description">
                 <div class=" text-justify ">
                     <p class="px-2 ">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus
-                        blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum
-                        sit
-                        iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil
-                        consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam
-                        reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo
-                        atque
-                        illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate,
-                        id
-                        quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus
-                        corrupti
-                        fugiat ea doloremque. Commodi iusto alias fugit laborum facere.
+                        ${ev.Description}
                     </p>
 
                 </div>
@@ -68,15 +58,11 @@ const product = `
 
         <article>
             <header class="text-center">
-                <h4> Allergenes</h4>
+                <h4> Tags </h4>
             </header>
             <ul class="text-center">
-                <div class="row mx-2">
-                    <li class="col-4">Meat</li>
-                    <li class="col-4">Meat</li>
-                    <li class="col-4">Meat</li>
-                    <li class="col-4">Meat</li>
-                    <li class="col-4">Meat</li>
+                <div id="tags" class="row mx-2">
+                    
                 </div>
             </ul>
         </article>
@@ -85,10 +71,10 @@ const product = `
         <nav class="navbar-light bg-light fixed-bottom ">
             <div class="container py-3">
                 <div class="row ">
-                    <div class="col text-center" id="price"><i class="fa fa-euro btn_ico" aria-hidden="true"></i><br>10€
+                    <div class="col text-center" id="price"><i class="fa fa-euro btn_ico" aria-hidden="true"></i><br>${ev.price}€
                     </div>
                     <div class="col text-center" id="guests"><i class="fa fa-users btn_ico" aria-hidden="true"></i><br>
-                        2/4
+                        ${ev.actual_guests}/${ev.max_guests}
                     </div>
                     <div class="col text-center" id="book"><i class="fa fa-sign-in btn_ico" aria-hidden="true"></i><br>Book
                     </div>
@@ -97,3 +83,41 @@ const product = `
         </nav>
     </footer>
 `
+}
+
+function create_event_map(ev, adr) {
+    var map = L.map('mapid').setView([adr.lat, adr.long], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var chicken = L.marker([adr.lat, adr.long]).addTo(map);
+
+    chicken.bindPopup(`<img src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
+        .openPopup();
+}
+
+function setFavourite() {
+    let icon = document.getElementById("favourite")
+    icon.onclick = () => {
+        if (icon.classList.contains("fa-heart-o")) {
+            icon.classList.remove("fa-heart-o")
+            icon.classList.add("fa-heart")
+            //add to favourites
+        }
+        else {
+            icon.classList.remove("fa-heart")
+            icon.classList.add("fa-heart-o")
+            //remove from favourites
+        }
+    }
+}
+
+function setTags(t) {
+    let tags = document.getElementById("tags")
+    for (let i in t) {
+        tags.innerHTML += `<li class="col-4">${t[i]}</li>`
+    }
+
+}

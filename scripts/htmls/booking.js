@@ -1,6 +1,7 @@
 'use strict'
 
-const booking = `
+function booking_page(ev) {
+    return `
 <div class="container margin_centered">
         <header>
             <div class="row pt-2">
@@ -10,12 +11,12 @@ const booking = `
             <div class="col-12 text-center">
                 <span>
                     <h1 class="profile_name text-center">
-                        Chicken
+                        ${ev.name}
                     </h1>
                 </span><br>
                 <div class="text-center">
-                    <i class="fa fa-clock-o"></i>20:00 -
-                    <i class="fa fa-calendar"></i> 15/01/2021<br>
+                    <i class="fa fa-clock-o"></i>${ev.price} -
+                    <i class="fa fa-calendar"></i> ${ev.date}<br>
                     <i class="fa fa-map"></i> 221b, Baker Street
                 </div>
 
@@ -34,7 +35,7 @@ const booking = `
                         </div>
                         <div>
                             <h3 id="total_price" class="text-center">
-                                Price: 10€
+                                Price: <br>10€
                             </h3>
                         </div>
                         <div class="text-center">
@@ -134,3 +135,67 @@ const booking = `
     </div>
 
 `
+}
+
+
+
+const payment_accepted = `<div class="d-flex justify-content-center mt-5 mb-5 m-3">
+<img src="images/logo.png" class="col-10">
+</div>
+
+<div class="text-center">
+Payment accepted
+</div>`
+
+function setMaxGuests(ev) {
+    let form = document.forms[0];
+    let guests = form.elements["BookingGuestInput"]
+    for (let i = 1; i < (ev.max_guests - ev.actual_guests); i++) {
+        guests.options[guests.options.length] = new Option(i + 1, i + 1);
+    }
+    guests.onchange = () => {
+        let n = guests.value
+        let total = n * ev.price
+        setPriceAndUpdate(total)
+    }
+}
+
+function setPriceAndUpdate(p) {
+    document.getElementById("total_price").innerText = "Price: \n" + p + "€"
+}
+
+function handlePayment(ev) {
+    let form = document.forms["booking_form"];
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault()
+    })
+    //Debit cart
+    let button = form.elements["submit"]
+    button.addEventListener('click', () => {
+        if (form.checkValidity()) {
+            ev.actual_guests = ev.actual_guests + form.elements["BookingGuestInput"].value
+            app.innerHTML = payment_accepted
+            setTimeout(function () {
+                //TODO: update cache
+                goToShowEventGuest(ev.id)
+            }, 1500)
+        }
+    })
+
+    //Paypal
+    let button2 = form.elements["submit_paypal"]
+    button2.addEventListener('click', () => {
+        if (form.elements["BookingGuestInput"].value <= (ev.max_guests - ev.actual_guests)) {
+            ev.actual_guests = parseInt(ev.actual_guests) + parseInt(form.elements["BookingGuestInput"].value)
+            app.innerHTML = payment_accepted
+            setTimeout(function () {
+                //TODO: update cache
+                goToShowEventGuest(ev.id)
+            }, 1500)
+        }
+    })
+
+
+
+
+}

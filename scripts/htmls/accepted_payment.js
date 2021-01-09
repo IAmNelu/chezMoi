@@ -1,3 +1,6 @@
+/*
+NOT USED ANYMORE
+
 `use strict`
 
 const payment_accepted = `<div class="d-flex justify-content-center mt-5 mb-5 m-3">
@@ -7,3 +10,5 @@ const payment_accepted = `<div class="d-flex justify-content-center mt-5 mb-5 m-
 <div class="text-center">
 Payment accepted
 </div>`
+
+*/
