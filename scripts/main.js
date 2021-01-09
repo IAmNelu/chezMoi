@@ -1,6 +1,6 @@
 const router = new Navigo('/', true, '#!');
 mySS = window.sessionStorage;
-//mySS.setItem("logged_in", "user_id_1");
+// mySS.setItem("logged_in", "user_id_1");
 // $.getJSON("/data/users.json", function (json) {
 //     let keys = Object.keys(json);
 //     for (let _i = 0; _i < keys.length; _i++) {
@@ -24,7 +24,9 @@ router.hooks({
     }
 })
 
-
+function updateUser(user) {
+    mySS.setItem(user.id, JSON.stringify(user));
+}
 
 
 //show functions
@@ -78,8 +80,9 @@ function showCreateEvent() {
     if (!logged_in) {
         showLogin();
     } else {
-        app.innerHTML = get_create_page();
-        add_event_listeners_create();
+        let user = get_user();
+        app.innerHTML = get_create_page(user);
+        add_event_listeners_create(user);
     }
 }
 

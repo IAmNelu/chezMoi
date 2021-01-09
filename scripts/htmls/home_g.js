@@ -62,7 +62,20 @@ const homePageUser = `
 function get_events_guests(){
     var events = [];
 
-    let conditions = JSON.parse( mySS.getItem("conditions") );
+    var conditions = null;
+    if ( mySS.getItem("conditions") ){
+        conditions = JSON.parse( mySS.getItem("conditions") );
+    } else {
+        conditions = {
+            "rating" : null,
+            "max_price" : null,
+            "guest_num": null,
+            "date": null,
+            "hour": null,
+            "radius": null,
+            "tags": []
+        }
+    }
 
     var keys = Object.keys(mySS);
     var i = keys.length;
@@ -82,7 +95,6 @@ function get_events_guests(){
             console.log('not a JSON');
           }
     }
-    console.log(events);
     var filetered_events = [];
     for(var i = 0; i < events.length; i++) {
         var event = events[i];

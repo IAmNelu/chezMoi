@@ -65,11 +65,6 @@
 h2{
     color: #342628;
 }
-
-.tags{
-    padding-left: 1em;
-}
-
 .back_arrow{
     margin-top: .8em;;
 }
@@ -78,3 +73,17 @@ h2{
     box-shadow: none;
 }
 
+.card{
+    padding-left: 0;
+}
+.tags_item_drop{
+    margin-bottom: 0;
+}
+
+.seleced_checks{
+    margin-top: 1em;
+}
+
+#selected * {
+    background-color: #EAEAEA;
+}

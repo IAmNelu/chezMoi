@@ -26,21 +26,45 @@ function handle_login() {
 }
 
 function showMap() {
-    var map = L.map('mapid').setView([51.505, -0.11], 13);
+
+    getLocation();
+    var user_postion = JSON.parse( mySS.getItem("user_position") );
+
+    var map = L.map('mapid').setView([user_postion.latitude, user_postion.longitude], 13);
+
+    //var map = L.map('mapid').setView([51.505, -0.11], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var cooking_mama = L.marker([51.5, -0.09]).addTo(map);
-
-    var you = L.marker([51.508, -0.11]).addTo(map);
-
-    cooking_mama.bindPopup('<img src="images/profile_cooking_mama.png" class="w-100"><br><br><b>Cooking mama</b>')
-        .openPopup();
-
+    // Mark your position
+    var you = L.marker([user_postion.latitude, user_postion.longitude]).addTo(map);
     you.bindPopup('<i class="fa fa-user-circle-o btn_ico" aria-hidden="true"></i><br><br><b>You are here</b>')
         .openPopup();
+
+    // Mark position of all hosts in a certain area
+    
+    //var cooking_mama = L.marker([51.5, -0.09]).addTo(map);
+    //cooking_mama.bindPopup('<img src="images/profile_cooking_mama.png" class="w-100"><br><br><b>Cooking mama</b>')
+    //    .openPopup();
+
+}
+
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("no geolocation")
+    }
+}
+
+function showPosition(position) {
+    user_position = {
+        "longitude": position.coords.longitude,
+        "latitude": position.coords.latitude
+    }
+    mySS.setItem('user_position', JSON.stringify(user_position));
 }
 
 //users function
@@ -83,4 +107,24 @@ function adjust_header() {
         prof_av.css('height', '32em');
     }
 
+}
+
+function sow_edit(uid) {
+    let user = JSON.parse(mySS.getItem(uid));
+    $("#small_description").show();
+    $("#collapseDescription").hide();
+    let sm = $("#small_description");
+    sm.html(getForm(user.description, user.id));
+}
+
+function edit_description(uid) {
+    let user = JSON.parse(mySS.getItem(uid));
+    let new_desc = $('#form_description_area').val();
+    user.description = new_desc;
+    let v = JSON.stringify(user);
+    mySS.setItem(uid, v);
+    showHostProfile();
+}
+function cancel_edit() {
+    showHostProfile();
 }

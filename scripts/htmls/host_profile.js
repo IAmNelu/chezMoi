@@ -68,7 +68,7 @@ function getUserPage(userObj) {
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col text-center"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
+                    <div class="col text-center" id="become_guest"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
                     </div>
                     <div class="col text-center" id="add_new_event"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
                         Event
@@ -88,7 +88,7 @@ function getOneEvent(eventObj) {
     <article id="art_${eventObj.id}" class="card mb-3">
             <div class="row">
                 <div class="col-6">
-                    <div class="image_card" id="img_${eventObj.id}"></div>
+                    <div class="image_card " id="img_${eventObj.id}"></div>
                 </div>
                 <div class="col-6">
                     <h3>${eventObj.name}</h3>
@@ -96,9 +96,14 @@ function getOneEvent(eventObj) {
                         <p class="col-6">${eventObj.price} €</p>
                         <p class="col-6">${eventObj.actual_guests}/${eventObj.max_guests} <i class="fa fa-user" aria-hidden="true"></i></p>
                     </div>
-                    <p class="incard_description">${eventObj.Description}</p>
+                    <p class="incard_description">${eventObj.Description.slice(0, 50)}</p>
                     <div class="row d-flex justify-content-between">
-                        <span class=" col-6 incard_date align-self-center">${eventObj.date}</span>
+                        <div>
+                            <span class=" col-6 incard_date align-self-center">${eventObj.date}</span><br>
+                            <span class=" col-6 incard_date align-self-center">${eventObj.hour} <i class="fa fa-clock-o"></i>
+                            </span>
+                        </div>
+                        
                         <button class="col-5  mb-1 mr-2 btn btn-light align-self-center edit_btn" onclick="event.stopPropagation(); edit_event('${eventObj.id}');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
                     </div>
                 </div>
@@ -156,4 +161,15 @@ function _set_events(events_arr) {
 
 function add_event_listeners_host() {
     $('#add_new_event').click(goHostCreateEvent);
+    $('#become_guest').click(_ => {
+        goToHome();
+    });
+}
+
+function hide_small_description() {
+    $('#small_description').hide();
+}
+
+function show_small_description() {
+    $('#small_description').show();
 }
