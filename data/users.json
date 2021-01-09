@@ -30,7 +30,7 @@
             {
                 "id": "ev_1__event_cooking_mama_events__user_id_1",
                 "name": "Fish",
-                "price": 10,
+                "price": 15,
                 "max_guests": 8,
                 "actual_guests": 1,
                 "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?,",

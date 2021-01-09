@@ -60,9 +60,20 @@ const homePageUser = `
     }
 
 function get_events_guests(){
-    var events = [],
-    keys = Object.keys(mySS),
-    i = keys.length;
+    var events = [];
+
+    var conditions = {
+        "rating" : 4,
+        "max_price" : 10,
+        "guest_num": 2,
+        "date": null,
+        "hour": null,
+        "radius": 10,
+        "tags": null
+    }
+
+    var keys = Object.keys(mySS);
+    var i = keys.length;
 
     while ( i-- ) {
         try {
@@ -74,6 +85,24 @@ function get_events_guests(){
           catch(err) {
             console.log('not a JSON');
           }
+    }
+
+    var filetered_events = [];
+    for(var i = 0; i < events.length; i++) {
+        var event = events[i];
+
+        var checksConditions = true;
+        if ( conditions.rating && checksConditions ){
+            if ( event.rating <= conditions.rating ){
+                checksConditions = false;
+            }
+        }
+        if ( conditions.max_price && checksConditions ){
+            if ( event.price >= conditions.max_price ){
+                checksConditions = false;
+            }
+        }
+        
     }
     return events[0]
 }
