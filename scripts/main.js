@@ -40,6 +40,8 @@ function showHome() {
         _set_events_guest(events);
         let searchButton = document.getElementById('searchButton');
         searchButton.onclick = () => goToSearch();
+        let wordSearchForm = document.getElementById('wordSearchForm');
+        wordSearchForm.onsubmit = () => searchWordSubmit();
     }
 }
 

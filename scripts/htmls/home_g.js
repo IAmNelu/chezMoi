@@ -3,11 +3,11 @@
 const homePageUser = `
     <!-- Search bar -->
     <div class="d-flex justify-content-center m-3">
-        <form class="form-inline">
-            <button class="btn btn-outline-success col-2 mr-1" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-            <input class="form-control col-7" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success col-2 ml-1" id="searchButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
+        <form class="form-inline" id="wordSearchForm">
+            <button class="btn btn-outline-success col-2 mr-1" type="submit" id="searchWordButton"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <input class="form-control col-9" type="search" placeholder="Search" aria-label="Search" id="wordToSearch">
         </form>
+        <button class="btn btn-outline-success col-2 ml-1" id="searchButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
     </div>
     
     <!-- Map with connection to places in cards -->
@@ -55,7 +55,6 @@ const homePageUser = `
                 $(art_id).click(_ => goToShowEvents(events_arr[_i].id))
                 //TODO: ADD FUNCTION TO CLICK AND SHOW EVENT
             }
-    
         }
     }
 
@@ -77,9 +76,22 @@ function get_events_guests(){
         }
     }
 
+    // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
+    conditions.date = "01/01/2021";
+    conditions.hour = "20:00";
+    // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
+
+    var searchWord = null;
+    if ( mySS.getItem("searchWord") && mySS.getItem("searchWord") != ""){
+        searchWord = mySS.getItem("searchWord");
+        searchWord = searchWord.toLowerCase();
+        console.log(searchWord)
+    }
+
     var keys = Object.keys(mySS);
     var i = keys.length;
 
+    // Load events
     while ( i-- ) {
         try {
             let user = JSON.parse( mySS.getItem(keys[i]) );
@@ -95,6 +107,8 @@ function get_events_guests(){
             console.log('not a JSON');
           }
     }
+
+    // check for search conditions
     var filetered_events = [];
     for(var i = 0; i < events.length; i++) {
         var event = events[i];
@@ -116,11 +130,64 @@ function get_events_guests(){
                 console.log('too many guests for this event')
             }
         }
+        if ( conditions.date && checksConditions ){
+            // Set condition date
+            var conditionDate = conditions.date;
+            conditionDate = conditionDate.split("/");
+            var day = conditionDate[0];
+            var month = conditionDate[1];
+            var year = conditionDate[2];
+            if ( conditions.hour ){
+                var conditionHour = conditions.hour;
+                conditionHour = conditionHour.split(":");
+                var hour = conditionHour[0];
+                var min = conditionHour[1];
+                conditionDate = new Date(day, month, year, hour, min);
+            } else {
+                conditionDate = new Date(day, month, year);
+            }
+            // Set event date
+            var eventDate = event.date;
+            var eventHour = event.hour;
+            eventDate = eventDate.split("/");
+            eventHour = eventHour.split(":");
+            var day = eventDate[0];
+            var month = eventDate[1];
+            var year = eventDate[2];
+            var hour = eventHour[0];
+            var min = eventHour[1];
+            eventDate = new Date(day, month, year, hour, min);
+            if ( eventDate > conditionDate ){
+                checksConditions = false;
+                console.log('the date of this event is after the deadline');
+            }
+        }
+        if ( conditions.radius && checksConditions ){
+            var eventLat = event.full_address.lat;
+            var eventLon = event.full_address.long;
+            var user_postion = JSON.parse( mySS.getItem("user_position") );
+            var userLat = user_postion.latitude;
+            var userLon = user_postion.longitude;
+            var distance_meters = getDistanceFromLatLonInKm(eventLat, eventLon, userLat, userLon)*1000;
+            if ( distance_meters > conditions.radius ){
+                checksConditions = false;
+                console.log('this event is too distant')
+            }
+        }
         for(var j = 0; j < conditions.tags.length; j++) {
             var tag = conditions.tags[j];
             if (tag && !event.tags.includes(tag)){
                 checksConditions = false;
                 console.log('this event does not include ', tag)
+            }
+        }
+
+        if ( searchWord ){
+            var evenDescription = (event.Description).toLowerCase();
+            var eventName = (event.name).toLowerCase();
+            if( !evenDescription.includes(searchWord) && !eventName.includes(searchWord) ){
+                checksConditions = false;
+                console.log('the word', searchWord, 'is not in this event');
             }
         }
 
@@ -132,3 +199,32 @@ function get_events_guests(){
     }
     return filetered_events
 }
+
+function searchWordSubmit(){
+    var wordToSearch = document.getElementById('wordToSearch').value;
+    if ( !wordToSearch || wordToSearch == ""){
+        mySS.removeItem('searchWord');
+        setTimeout(function(){window.location.reload();},10);
+    } else {
+        mySS.setItem('searchWord', (wordToSearch));
+        setTimeout(function(){window.location.reload();},10);
+    }
+}
+
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c; // Distance in km
+    return d;
+  }
+  
+  function deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
+  

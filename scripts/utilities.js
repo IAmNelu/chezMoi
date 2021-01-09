@@ -32,7 +32,7 @@ function showMap() {
 
     var map = L.map('mapid').setView([user_postion.latitude, user_postion.longitude], 13);
 
-    //var map = L.map('mapid').setView([51.505, -0.11], 13);
+    //var map = L.map('mapid').setView([40.554222599, 17.7236034], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -44,10 +44,31 @@ function showMap() {
         .openPopup();
 
     // Mark position of all hosts in a certain area
-    
-    //var cooking_mama = L.marker([51.5, -0.09]).addTo(map);
-    //cooking_mama.bindPopup('<img src="images/profile_cooking_mama.png" class="w-100"><br><br><b>Cooking mama</b>')
-    //    .openPopup();
+    var keys = Object.keys(mySS);
+    var i = keys.length;
+
+    // Load users and hosts
+    while ( i-- ) {
+        try {
+            let user = JSON.parse( mySS.getItem(keys[i]) );
+            if ( user.addresses ){
+                var hostLat = user.addresses.adr1.lat;
+                var hostLong = user.addresses.adr1.long;
+                var hostName = user.name;
+                var hostPicUrl = user.pro_pric;
+                var cooking_mama = L.marker([hostLat, hostLong]).addTo(map);
+                cooking_mama.bindPopup('<img src="' + hostPicUrl + '" class="w-100"><br><br><b>'+ hostName + '</b>')
+                    .openPopup();
+            }
+          }
+          catch(err) {
+            console.log('not a JSON');
+          }
+    }
+
+    // var cooking_mama = L.marker([40.552, 17.710]).addTo(map);
+    // cooking_mama.bindPopup('<img src="images/profile_cooking_mama.png" class="w-100"><br><br><b>Cooking mama</b>')
+    //     .openPopup();
 
 }
 

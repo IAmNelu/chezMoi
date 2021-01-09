@@ -110,5 +110,4 @@ function submitSearch(){
   }
   mySS.setItem('conditions', JSON.stringify(conditions));
   goToHome();
-  return
 }
