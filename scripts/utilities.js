@@ -84,3 +84,23 @@ function adjust_header() {
     }
 
 }
+
+function sow_edit(uid) {
+    let user = JSON.parse(mySS.getItem(uid));
+    $("#small_description").show();
+    $("#collapseDescription").hide();
+    let sm = $("#small_description");
+    sm.html(getForm(user.description, user.id));
+}
+
+function edit_description(uid) {
+    let user = JSON.parse(mySS.getItem(uid));
+    let new_desc = $('#form_description_area').val();
+    user.description = new_desc;
+    let v = JSON.stringify(user);
+    mySS.setItem(uid, v);
+    showHostProfile();
+}
+function cancel_edit() {
+    showHostProfile();
+}

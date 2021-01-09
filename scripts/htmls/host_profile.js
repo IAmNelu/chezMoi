@@ -96,7 +96,7 @@ function getOneEvent(eventObj) {
                         <p class="col-6">${eventObj.price} €</p>
                         <p class="col-6">${eventObj.actual_guests}/${eventObj.max_guests} <i class="fa fa-user" aria-hidden="true"></i></p>
                     </div>
-                    <p class="incard_description">${eventObj.Description}</p>
+                    <p class="incard_description">${eventObj.Description.slice(0, 50)}</p>
                     <div class="row d-flex justify-content-between">
                         <div>
                             <span class=" col-6 incard_date align-self-center">${eventObj.date}</span><br>
