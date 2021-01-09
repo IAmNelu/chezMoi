@@ -1,11 +1,9 @@
 'use strict';
 
-//TODO: implement getProductInfo and set price/guest_possible properly, once decided the DB to use
-//TODO: implement properly backToMenu, once merged all
+//TODO: check availability for enable/disable book button + route to payment
 
-//TODO: implement header images as carousel/support for multiple images
+//TODO (?) check if logged user already booked -> what about booking we want to "remove"?
 
-//TODO maybe(?): add Host rating in info under meal
 
 //TODO: route have to scroll up teh page
 

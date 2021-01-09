@@ -55,6 +55,9 @@ function get_user() {
     return user;
 }
 
+function get_user_from_event_id(id) {
+    return JSON.parse(mySS.getItem(id.split("__").pop()))
+}
 
 
 //graphics
