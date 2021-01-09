@@ -7,7 +7,7 @@ mySS = window.sessionStorage;
 //         const k = keys[_i];
 //         const v = JSON.stringify(json[k]);
 //         mySS.setItem(k, v);
-//
+
 //     }
 //     mySS.setItem('hosts', JSON.stringify(keys));
 //     return;
@@ -116,8 +116,8 @@ function showEventGuestSide(ev) {
             goToPayment.onclick = () => goToBooking(ev.id)
         }
         else {
-            goToPayment.setAttribute("disabled", True)
-            goToPayment.innerText = "Full"
+            goToPayment.classList.add("disable")
+            goToPayment.innerHTML = '<i class="fa fa-sign-in btn_ico" aria-hidden="true"></i><br>Full</div>'
         }
     }
 }
@@ -231,13 +231,13 @@ router
         showEventHostSide(ev);
     })
     .on("/show-event-guest/:id", param => {
-        let lg_user = get_user_from_event_id(param.id);
-        let ev = lg_user.events.filter(e => e.id == param.id)[0];
+        let event_user = get_user_from_event_id(param.id);
+        let ev = event_user.events.filter(e => e.id == param.id)[0];
         showEventGuestSide(ev);
     })
     .on("/book-event/:id", param => {
-        let lg_user = get_user_from_event_id(param.id);
-        let ev = lg_user.events.filter(e => e.id == param.id)[0];
+        let event_user = get_user_from_event_id(param.id);
+        let ev = event_user.events.filter(e => e.id == param.id)[0];
         showBookingEvent(ev);
     })
     .on("*", showHome)

@@ -166,16 +166,21 @@ function setPriceAndUpdate(p) {
 
 function handlePayment(ev) {
     let form = document.forms["booking_form"];
-    form.addEventListener("submit", (ev) => {
-        ev.preventDefault()
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
     })
     //Debit cart
     let button = form.elements["submit"]
     button.addEventListener('click', () => {
         if (form.checkValidity()) {
-            ev.actual_guests = ev.actual_guests + form.elements["BookingGuestInput"].value
+            ev.actual_guests = parseInt(ev.actual_guests) + parseInt(form.elements["BookingGuestInput"].value)
             app.innerHTML = payment_accepted
             setTimeout(function () {
+                let u = get_user_from_event_id(ev.id)
+                u.events[ev.id.split("_")[1]] = ev
+                console.log(u.events[ev.id.split("_")[1]])
+                console.log(ev.id.split("_")[1])
+                mySS.setItem(u.id, JSON.stringify(u))
                 //TODO: update cache
                 goToShowEventGuest(ev.id)
             }, 1500)
@@ -189,7 +194,13 @@ function handlePayment(ev) {
             ev.actual_guests = parseInt(ev.actual_guests) + parseInt(form.elements["BookingGuestInput"].value)
             app.innerHTML = payment_accepted
             setTimeout(function () {
-                //TODO: update cache
+
+                let u = get_user_from_event_id(ev.id)
+                u.events[ev.id.split("_")[1]] = ev
+                console.log(u.events[ev.id.split("_")[1]])
+                console.log(ev.id.split("_")[1])
+                mySS.setItem(u.id, JSON.stringify(u))
+                //console.log(mySS)
                 goToShowEventGuest(ev.id)
             }, 1500)
         }
