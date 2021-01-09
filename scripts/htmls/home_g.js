@@ -62,47 +62,61 @@ const homePageUser = `
 function get_events_guests(){
     var events = [];
 
-    var conditions = {
-        "rating" : 4,
-        "max_price" : 10,
-        "guest_num": 2,
-        "date": null,
-        "hour": null,
-        "radius": 10,
-        "tags": null
-    }
+    let conditions = JSON.parse( mySS.getItem("conditions") );
 
     var keys = Object.keys(mySS);
     var i = keys.length;
 
     while ( i-- ) {
         try {
-            let item = JSON.parse( mySS.getItem(keys[i]) );
-            if ( item.events ){
-                events.push( item.events );
+            let user = JSON.parse( mySS.getItem(keys[i]) );
+            if ( user.events ){
+                for(var i = 0; i < user.events.length; i++) {
+                    events.push( user.events[i] );
+                    events[i].ratings = user.ratings;
+                    events[i].full_address = user.addresses[events[i].adr]
+                }
             }
           }
           catch(err) {
             console.log('not a JSON');
           }
     }
-
+    console.log(events);
     var filetered_events = [];
     for(var i = 0; i < events.length; i++) {
         var event = events[i];
-
         var checksConditions = true;
         if ( conditions.rating && checksConditions ){
-            if ( event.rating <= conditions.rating ){
+            if ( event.ratings < conditions.rating ){
                 checksConditions = false;
             }
         }
         if ( conditions.max_price && checksConditions ){
-            if ( event.price >= conditions.max_price ){
+            if ( event.price > conditions.max_price ){
                 checksConditions = false;
+                console.log('max price exceded')
             }
         }
-        
+        if ( conditions.guest_num && checksConditions ){
+            if ( (event.max_guests - event.actual_guests) <= conditions.guest_num ){
+                checksConditions = false;
+                console.log('too many guests for this event')
+            }
+        }
+        for(var j = 0; j < conditions.tags.length; j++) {
+            var tag = conditions.tags[j];
+            if (tag && !event.tags.includes(tag)){
+                checksConditions = false;
+                console.log('this event does not include ', tag)
+            }
+        }
+
+        // Add radius and date condition
+
+        if ( checksConditions ) {
+            filetered_events.push(event);
+        }
     }
-    return events[0]
+    return filetered_events
 }

@@ -54,6 +54,8 @@ function showSearch() {
         app.innerHTML = searchPage;
         let backToHome = document.getElementById('backToHome');
         backToHome.onclick = () => goToHome();
+        let searchForm = document.getElementById('searchForm');
+        searchForm.onsubmit = () => submitSearch();
     }
 }
 

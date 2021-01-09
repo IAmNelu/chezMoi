@@ -11,7 +11,7 @@ const searchPage = `<header class="mb-10">
     </header>
     
     <section class="m-3">
-        <form class="m-2">
+        <form class="m-2" id="searchForm">
           <div class="form-group row">
             <label for="radius" class="col-6">Radius</label>
             <input type="number" class="form-control col-5" id="radius" placeholder="500 meters">
@@ -36,27 +36,27 @@ const searchPage = `<header class="mb-10">
           </div>
           <div>Special needs</div>
           <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Vegetarian
+              <input class="form-check-input" type="checkbox" value="" id="meat">
+              <label class="form-check-label" for="meat">
+                Meat
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Vegan
+              <input class="form-check-input" type="checkbox" value="" id="fish">
+              <label class="form-check-label" for="fish">
+                Fish
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Nut allergy
+              <input class="form-check-input" type="checkbox" value="" id="bio">
+              <label class="form-check-label" for="bio">
+                Bio
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Shellfish allergy
+              <input class="form-check-input" type="checkbox" value="" id="gluten-free">
+              <label class="form-check-label" for="gluten-free">
+                Gluten Free
               </label>
             </div>
             
@@ -69,3 +69,46 @@ const searchPage = `<header class="mb-10">
             </nav>
         </form>
     </section>`;
+
+function submitSearch(){
+  console.log('searchForm submitted');
+  let searchForm = document.getElementById('searchForm');
+  let radius = searchForm.elements["radius"].value;
+  let ratings = searchForm.elements["ratings"].value;
+  let maxPrice = searchForm.elements["maxPrice"].value;
+  let guests = searchForm.elements["guests"].value;
+  let meatChecked = null;
+  if ( searchForm.elements["meat"].checked ){
+    meatChecked = "meat";
+  }
+  let fishChecked = null;
+  if ( searchForm.elements["fish"].checked ){
+    fishChecked = "fish";
+  }
+  let bioChecked = null;
+  if ( searchForm.elements["bio"].checked ){
+    bioChecked = "bio";
+  }
+  let glutenChecked = null;
+  if ( searchForm.elements["gluten-free"].checked ){
+    glutenChecked = "gluten-free";
+  }
+
+  var conditions = {
+    "rating" : ratings,
+    "max_price" : maxPrice,
+    "guest_num": guests,
+    "date": null,
+    "hour": null,
+    "radius": radius,
+    "tags": [
+      meatChecked,
+      fishChecked,
+      bioChecked,
+      glutenChecked
+    ]
+  }
+  mySS.setItem('conditions', JSON.stringify(conditions));
+  goToHome();
+  return
+}
