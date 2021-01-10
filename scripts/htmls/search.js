@@ -73,6 +73,7 @@ const searchPage = `
           <div>Special needs</div>
           <div class="form-check">
             <div class="row">
+              <span class="col-1"></span>
               <span class="col-1">
                 <input class="form-check-input" type="checkbox" value="" id="meat">
               </span>
@@ -83,6 +84,7 @@ const searchPage = `
           </div>
             <div class="form-check">
               <div class="row">
+                <span class="col-1"></span>
                 <span class="col-1">
                   <input class="form-check-input" type="checkbox" value="" id="fish">
                 </span>
@@ -93,6 +95,7 @@ const searchPage = `
             </div>
             <div class="form-check">
               <div class="row">
+                <span class="col-1"></span>
                 <span class="col-1">
                   <input class="form-check-input" type="checkbox" value="" id="bio">
                 </span>
@@ -103,6 +106,7 @@ const searchPage = `
             </div>
             <div class="form-check">
               <div class="row">
+                <span class="col-1"></span>
                 <span class="col-1">
                   <input class="form-check-input" type="checkbox" value="" id="gluten-free">
                 </span>
