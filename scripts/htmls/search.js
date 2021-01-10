@@ -10,6 +10,19 @@ const searchPage = `
     <section class="m-3">
         <form class="m-2" id="searchForm">
 
+        <div class="container margin_bootom_big">
+
+          <div class="form-group">
+            <div class="row">
+              <span class="col-6">
+                <label for="wordToSearchSpecific" class="">Search by word</label>
+              </span>
+              <span class="col-6">
+                <input type="string" class="form-control" id="wordToSearchSpecific" placeholder="What to eat?">
+              </span>
+            </div> 
+          </div>
+
           <div class="container margin_bootom_big">
             <div class="form-group">
               <div class="row">
@@ -130,6 +143,7 @@ const searchPage = `
 function submitSearch(){
   console.log('searchForm submitted');
   let searchForm = document.getElementById('searchForm');
+  let wordToSearchSpecific = searchForm.elements["wordToSearchSpecific"].value;
   let radius = searchForm.elements["radius"].value;
   let ratings = searchForm.elements["ratings"].value;
   let maxPrice = searchForm.elements["maxPrice"].value;
@@ -168,6 +182,8 @@ function submitSearch(){
     ]
   }
   mySS.setItem('conditions', JSON.stringify(conditions));
-  console.log(conditions)
+  if (wordToSearchSpecific){ 
+    mySS.setItem('searchWord', (wordToSearchSpecific)); 
+  }
   goToHome();
 }

@@ -96,6 +96,8 @@ function showHome() {
         searchButton.onclick = () => goToSearch();
         let wordSearchForm = document.getElementById('wordSearchForm');
         wordSearchForm.onsubmit = () => searchWordSubmit();
+        let goToProfile = document.getElementById('goToProfile');
+        goToProfile.onclick = () => handleGoToProfile();
     }
 }
 

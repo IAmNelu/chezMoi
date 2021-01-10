@@ -93,6 +93,16 @@ function showPosition(position) {
     _map_stuff();
 }
 
+function handleGoToProfile(){
+    let hosts = JSON.parse(mySS.getItem("hosts"));
+    let user_id = get_user_id();
+    if (hosts.includes(user_id)) {
+        goHostProfile();
+    } else {
+        alert("You have to be registered as host to access the profile!");
+    }
+}
+
 //users function
 // USER ID
 function get_user_id() {

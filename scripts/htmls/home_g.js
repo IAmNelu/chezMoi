@@ -10,7 +10,7 @@ const homePageUser = `
                 </button>
             </div>
             <div class="col-10">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                <input class="form-control" type="search" placeholder="Are you hungry?" aria-label="Search"
                     id="wordToSearch">
             </div>
         </form>
@@ -42,7 +42,7 @@ const homePageUser = `
                     </div>
                     <div class="col-3 text-center"><i class="fa fa-comments-o btn_ico" aria-hidden="true"></i><br>Messages
                     </div>
-                    <div class="col-3 text-center"><i class="fa fa-user-circle-o btn_ico" aria-hidden="true"></i><br>Profile
+                    <div class="col-3 text-center" id="goToProfile"><i class="fa fa-user-circle-o btn_ico" aria-hidden="true"></i><br>Profile
                     </div>
                 </div>
             </div>
@@ -245,12 +245,15 @@ function get_events_guests() {
 
 function searchWordSubmit() {
     var wordToSearch = document.getElementById('wordToSearch').value;
+    mySS.removeItem('conditions');
     if (!wordToSearch || wordToSearch == "") {
         mySS.removeItem('searchWord');
-        setTimeout(function () { window.location.reload(); }, 10);
+        let events = get_events_guests();
+        _set_events_guest(events);
     } else {
         mySS.setItem('searchWord', (wordToSearch));
-        setTimeout(function () { window.location.reload(); }, 10);
+        let events = get_events_guests();
+        _set_events_guest(events);
     }
 }
 
