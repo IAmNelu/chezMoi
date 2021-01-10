@@ -123,6 +123,7 @@ function showSearch() {
         showLogin();
     } else {
         app.innerHTML = searchPage;
+        initializeTags();
         let backToHome = document.getElementById('backToHome');
         backToHome.onclick = () => goToHome();
         let searchForm = document.getElementById('searchForm');

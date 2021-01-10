@@ -1,26 +1,31 @@
 'use strict'
 
 const homePageUser = `
-    <div class="row justify-content-center my-4">
-    <div class="col-9">
-        <form class="form-inline row" id="wordSearchForm">
+    <nav class="navbar navbar-white bg-white">
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-9">
+                <form class="form-inline row" id="wordSearchForm">
+                    <div class="col-2">
+                        <button class="btn btn-outline-success" type="submit" id="searchWordButton">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="col-10">
+                        <input class="form-control" type="search" placeholder="Are you hungry?" aria-label="Search"
+                            id="wordToSearch">
+                    </div>
+                </form>
+            </div>
             <div class="col-2">
-                <button class="btn btn-outline-success" type="submit" id="searchWordButton">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                <button class="btn btn-outline-success" id="searchButton">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
-            <div class="col-10">
-                <input class="form-control" type="search" placeholder="Are you hungry?" aria-label="Search"
-                    id="wordToSearch">
-            </div>
-        </form>
-    </div>
-    <div class="col-2">
-        <button class="btn btn-outline-success" id="searchButton">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
-    </div>
-    </div>
+        </div>
+    </nav>
+
+    
+    
     <!-- Map with connection to places in cards -->
     <div class="row mx-1 my-4">
         <div class="col-12">
