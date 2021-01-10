@@ -26,10 +26,15 @@ function handle_login() {
 }
 
 function showMap() {
-
     getLocation();
-    var user_postion = JSON.parse( mySS.getItem("user_position") );
+}
 
+function _map_stuff() {
+
+    var user_postion = JSON.parse(mySS.getItem("user_position"));
+    let w = parseInt(window.innerWidth * 0.9);
+    $('#mapid').width(w);
+    $('#mapid').height(w);
     var map = L.map('mapid').setView([user_postion.latitude, user_postion.longitude], 13);
 
     //var map = L.map('mapid').setView([40.554222599, 17.7236034], 13);
@@ -37,7 +42,6 @@ function showMap() {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
     // Mark your position
     var you = L.marker([user_postion.latitude, user_postion.longitude]).addTo(map);
     you.bindPopup('<i class="fa fa-user-circle-o btn_ico" aria-hidden="true"></i><br><br><b>You are here</b>')
@@ -48,22 +52,22 @@ function showMap() {
     var i = keys.length;
 
     // Load users and hosts
-    while ( i-- ) {
+    while (i--) {
         try {
-            let user = JSON.parse( mySS.getItem(keys[i]) );
-            if ( user.addresses ){
+            let user = JSON.parse(mySS.getItem(keys[i]));
+            if (user.addresses) {
                 var hostLat = user.addresses.adr1.lat;
                 var hostLong = user.addresses.adr1.long;
                 var hostName = user.name;
                 var hostPicUrl = user.pro_pric;
                 var cooking_mama = L.marker([hostLat, hostLong]).addTo(map);
-                cooking_mama.bindPopup('<img src="' + hostPicUrl + '" class="w-100"><br><br><b>'+ hostName + '</b>')
+                cooking_mama.bindPopup('<img src="' + hostPicUrl + '" class="w-100"><br><br><b>' + hostName + '</b>')
                     .openPopup();
             }
-          }
-          catch(err) {
+        }
+        catch (err) {
             console.log('not a JSON');
-          }
+        }
     }
 
     // var cooking_mama = L.marker([40.552, 17.710]).addTo(map);
@@ -74,9 +78,9 @@ function showMap() {
 
 function getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-      console.log("no geolocation")
+        console.log("no geolocation")
     }
 }
 
@@ -86,6 +90,7 @@ function showPosition(position) {
         "latitude": position.coords.latitude
     }
     mySS.setItem('user_position', JSON.stringify(user_position));
+    _map_stuff();
 }
 
 //users function

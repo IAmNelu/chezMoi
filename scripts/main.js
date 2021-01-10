@@ -1,5 +1,59 @@
 const router = new Navigo('/', true, '#!');
 mySS = window.sessionStorage;
+let obj = {
+    "id": "user_id_1",
+    "name": "Cooking MAMA",
+    "ratings": 4.9,
+    "pro_pric": "../images/profile_cooking_mama.png",
+    "bcg_pic": "../images/app_cooking_mama.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
+    "addresses": {
+        "adr1": {
+            "lat": 40.552,
+            "long": 17.710,
+            "full_address": "221b, Baker Street"
+        }
+    },
+    "events": [
+        {
+            "id": "ev_0__event_cooking_mama_events__user_id_1",
+            "name": "Chicken",
+            "price": 10,
+            "max_guests": 6,
+            "actual_guests": 4,
+            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?",
+            "date": "01/01/2021",
+            "hour": "12:00",
+            "adr": "adr1",
+            "picture": "../images/chicken_meal.jpg",
+            "tags": [
+                "meat",
+                "lunch",
+                "gluten-free",
+                "bio"
+            ]
+        },
+        {
+            "id": "ev_1__event_cooking_mama_events__user_id_1",
+            "name": "Fish",
+            "price": 15,
+            "max_guests": 8,
+            "actual_guests": 1,
+            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?,",
+            "date": "01/01/2021",
+            "hour": "18:00",
+            "adr": "adr1",
+            "picture": "../images/fish_meal.png",
+            "tags": [
+                "gluten-free",
+                "bio",
+                "fish"
+            ]
+        }
+    ]
+}
+if (!mySS.getItem('user_id_1')) mySS.setItem('user_id_1', JSON.stringify(obj));
+mySS.setItem('hosts', JSON.stringify(["user_id_1"]));
 // mySS.setItem("logged_in", "user_id_1");
 // $.getJSON("/data/users.json", function (json) {
 //     let keys = Object.keys(json);
