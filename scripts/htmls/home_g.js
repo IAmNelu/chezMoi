@@ -1,21 +1,34 @@
 'use strict'
 
 const homePageUser = `
-    <!-- Search bar -->
-    <div class="d-flex justify-content-center m-3">
+    <div class="row justify-content-center my-4">
         <form class="form-inline" id="wordSearchForm">
-            <button class="btn btn-outline-success col-2 mr-1" type="submit" id="searchWordButton"><i class="fa fa-search" aria-hidden="true"></i></button>
-            <input class="form-control col-9" type="search" placeholder="Search" aria-label="Search" id="wordToSearch">
+            <div class="col-2">
+                <button class="btn btn-outline-success" type="submit" id="searchWordButton">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="col-8">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="wordToSearch">
+            </div>
         </form>
-        <button class="btn btn-outline-success col-2 ml-1" id="searchButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
+        <div class="col-2">
+            <button class="btn btn-outline-success" id="searchButton">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
     </div>
     
     <!-- Map with connection to places in cards -->
-    <div class="col-12 container-fluid justify-content-center mb-3 mt-3" >
-        <div id="mapid" style=" height: 300px; max-width: 500px "></div>
+    <div class="row mx-1 my-4">
+        <div class="col-12">
+            <div id="mapid" style=" height: 350px; max-width: 100% "></div>
+        </div>
     </div>
-    
-    <div id="guest_events"></div>
+
+    <div class="container margin_bootom_big">
+        <div id="guest_events"></div>
+    </div>
     
     <footer>
         <nav class="navbar-light bg-light fixed-bottom py-3">
