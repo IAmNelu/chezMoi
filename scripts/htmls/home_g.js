@@ -77,8 +77,8 @@ function get_events_guests(){
     }
 
     // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
-    conditions.date = "01/01/2021";
-    conditions.hour = "20:00";
+    // conditions.date = "01/01/2021";
+    // conditions.hour = "20:00";
     // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
 
     var searchWord = null;
@@ -133,10 +133,10 @@ function get_events_guests(){
         if ( conditions.date && checksConditions ){
             // Set condition date
             var conditionDate = conditions.date;
-            conditionDate = conditionDate.split("/");
-            var day = conditionDate[0];
+            conditionDate = conditionDate.split("-");
+            var year = conditionDate[0];
             var month = conditionDate[1];
-            var year = conditionDate[2];
+            var day = conditionDate[2];
             if ( conditions.hour ){
                 var conditionHour = conditions.hour;
                 conditionHour = conditionHour.split(":");

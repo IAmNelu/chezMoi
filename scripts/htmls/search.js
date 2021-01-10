@@ -30,9 +30,14 @@ const searchPage = `<header class="mb-10">
             <label for="maxPrice" class="col-6">Maximum price</label>
             <input type="number" class="form-control col-5" id="maxPrice" placeholder="30€">
           </div>
-            <div class="form-group row">
+          <div class="form-group row">
             <label for="guests" class="col-6">Guests</label>
             <input type="number" class="form-control col-5" id="guests" placeholder="number of guests">
+          </div>
+          <div class="form-group row">
+            <label for="time_event" class="col-12">Maximum Date</label>
+            <input class="col-5" type="time" name="searchTime" id="searchTimeInput">
+            <input class="col-6" type="date" name="searchDate" id="searchDateInput">
           </div>
           <div>Special needs</div>
           <div class="form-check">
@@ -77,6 +82,8 @@ function submitSearch(){
   let ratings = searchForm.elements["ratings"].value;
   let maxPrice = searchForm.elements["maxPrice"].value;
   let guests = searchForm.elements["guests"].value;
+  let date = searchForm.elements["searchDateInput"].value;
+  let hour = searchForm.elements["searchTimeInput"].value;
   let meatChecked = null;
   if ( searchForm.elements["meat"].checked ){
     meatChecked = "meat";
@@ -98,8 +105,8 @@ function submitSearch(){
     "rating" : ratings,
     "max_price" : maxPrice,
     "guest_num": guests,
-    "date": null,
-    "hour": null,
+    "date": date,
+    "hour": hour,
     "radius": radius,
     "tags": [
       meatChecked,
@@ -109,5 +116,6 @@ function submitSearch(){
     ]
   }
   mySS.setItem('conditions', JSON.stringify(conditions));
+  console.log(conditions)
   goToHome();
 }

@@ -50,6 +50,17 @@ function showLogin() {
     handle_login();
 }
 
+function showHostLogin() {
+    if (!logged_in) {
+        showLogin();
+    } else {
+        app.innerHTML = hostLoginPage;
+        let loginAsUser = document.getElementById('loginAsUser');
+        loginAsUser.onclick = () => goToHome();
+        let loginAsHost = document.getElementById('loginAsHost');
+        loginAsHost.onclick = () => goHostProfile();
+    }
+}
 
 function showSearch() {
     if (!logged_in) {
@@ -165,6 +176,15 @@ function goToSearch() {
     return false;
 }
 
+function goToHostLogin() {
+    let route = '/login';
+    if (logged_in) {
+        route = '/hostLogin';
+    }
+    router.navigate(route);
+    return false;
+}
+
 function goHostProfile() {
     let route = '/login';
 
@@ -228,6 +248,7 @@ function goToBooking(ev_id) {
 router
     .on("/home", showHome)
     .on("/login", showLogin)
+    .on("/hostLogin", showHostLogin)
     .on("/search", showSearch)
     .on("/profile", showHostProfile)
     .on("/create-event", showCreateEvent)

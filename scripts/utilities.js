@@ -12,7 +12,7 @@ function handle_login() {
             if (hosts.includes(user_name)) {
                 mySS.setItem('logged_in', user_name);
                 logged_in = mySS.getItem('logged_in');
-                goHostProfile();
+                goToHostLogin();
             } else {
                 mySS.setItem('logged_in', user_name);
                 logged_in = mySS.getItem('logged_in');
