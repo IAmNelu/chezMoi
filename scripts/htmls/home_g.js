@@ -124,11 +124,6 @@ function get_events_guests() {
         }
     }
 
-    // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
-    // conditions.date = "01/01/2021";
-    // conditions.hour = "20:00";
-    // REMOVE AFTER INSERTING REAL DATE CONDITION IN FORM
-
     var searchWord = null;
     if (mySS.getItem("searchWord") && mySS.getItem("searchWord") != "") {
         searchWord = mySS.getItem("searchWord");
