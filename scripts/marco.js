@@ -1,11 +1,11 @@
 'use strict';
 
-//TODO: check availability for enable/disable book button + route to payment
 
-//TODO (?) check if logged user already booked -> what about booking we want to "remove"?
+//TODO (?) check if logged user already booked -> what about booking we want to "remove"? ->2.0
+//TODO (?) Favourites -> 2.0
+//TODO (?) metadata
 
-
-//TODO: route have to scroll up teh page
+//TODO: evaluate star rate
 
 
 let price = 0

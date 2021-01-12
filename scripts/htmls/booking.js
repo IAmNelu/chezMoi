@@ -35,7 +35,7 @@ function booking_page(ev) {
                         </div>
                         <div>
                             <h3 id="total_price" class="text-center">
-                                Price: <br>10€
+                                Price: <br>${ev.price}€
                             </h3>
                         </div>
                         <div class="text-center">
@@ -88,19 +88,20 @@ function booking_page(ev) {
                                             <div class="col-sm-8">
                                                 <div class="form-group"> <label><span class="hidden-xs">
                                                             <h6>Expiration Date</h6>
+                                                            <div id="error" class="d-none warning"> Check your expiration date </div>
+
                                                         </span></label>
-                                                    <div class="input-group"> <input type="number" placeholder="MM"
-                                                            name="" class="form-control" required> <input type="number"
-                                                            placeholder="YY" name="" class="form-control" required>
+                                                    <div class="input-group"> <input id="month" type="number" placeholder="MM"
+                                                            name="month" class="form-control" max=12 min=0 required> <input type="number"
+                                                            placeholder="YY" name="year" class="form-control" id="year" max=99 min=0 required>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group mb-4"> <label data-toggle="tooltip"
-                                                        title="Three digit CV code on the back of your card">
-                                                        <h6>CVV <i class="fa fa-question-circle d-inline"></i>
+                                            <div class="col-sm-4 align-bottom">
+                                                <div class="form-group"> 
+                                                        <h6>CVV <br>(3 digit number)
                                                         </h6>
-                                                    </label> <input type="text" required class="form-control">
+                                                    </label> <input type="text" pattern="[0-9]{3}" required class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -173,17 +174,22 @@ function handlePayment(ev) {
     let button = form.elements["submit"]
     button.addEventListener('click', () => {
         if (form.checkValidity()) {
-            ev.actual_guests = parseInt(ev.actual_guests) + parseInt(form.elements["BookingGuestInput"].value)
-            app.innerHTML = payment_accepted
-            setTimeout(function () {
-                let u = get_user_from_event_id(ev.id)
-                u.events[ev.id.split("_")[1]] = ev
-                console.log(u.events[ev.id.split("_")[1]])
-                console.log(ev.id.split("_")[1])
-                mySS.setItem(u.id, JSON.stringify(u))
-                //TODO: update cache
-                goToShowEventGuest(ev.id)
-            }, 1500)
+            if (!CheckExpiration(form.elements["month"].value, form.elements["year"].value)) {
+                document.getElementById("error").classList.remove("d-none")
+            }
+            else {
+                ev.actual_guests = parseInt(ev.actual_guests) + parseInt(form.elements["BookingGuestInput"].value)
+                app.innerHTML = payment_accepted
+                setTimeout(function () {
+                    let u = get_user_from_event_id(ev.id)
+                    u.events[ev.id.split("_")[1]] = ev
+                    console.log(u.events[ev.id.split("_")[1]])
+                    console.log(ev.id.split("_")[1])
+                    mySS.setItem(u.id, JSON.stringify(u))
+                    //TODO: update cache
+                    goToShowEventGuest(ev.id)
+                }, 1500)
+            }
         }
     })
 
@@ -205,8 +211,19 @@ function handlePayment(ev) {
             }, 1500)
         }
     })
-
-
-
-
 }
+
+function CheckExpiration(m, y) {
+    let date = new Date()
+    let month = date.getMonth() + 1
+    let year = date.getFullYear() - 2000
+    if (y > year || (m >= month && y == year)) {
+        return true
+    }
+    else
+        return false
+}
+
+
+
+

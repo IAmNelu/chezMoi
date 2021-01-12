@@ -17,6 +17,10 @@
 
 }
 
+.warning{
+    color: red;
+}
+
 .disable{
     color: silver;
 }
@@ -98,5 +102,5 @@ nav {
   }
 
   ul{
-    list-style-position: inside;
+    list-style-type: none;
   }
