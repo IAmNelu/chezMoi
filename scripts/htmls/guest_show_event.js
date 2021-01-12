@@ -8,7 +8,7 @@ function get_guest_show_event(ev, usr) {
         </button>
 
     </header>
-    <div class="avatar_profile "></div>
+    <div class="avatar_profile " id = "img_profile"></div>
     <div class="container margin_bootom_big margin_centered">
 
         <div class="margin_bootom_medium">
@@ -22,7 +22,8 @@ function get_guest_show_event(ev, usr) {
                             </h1>
                         </span><br>
                         <div class="text-center">
-                        <i class="fa fa-star"></i> ${usr.ratings} <br>
+                        
+                        <i class="fa fa-star"></i>${usr.ratings}, ${usr.name} <br>
                             <i class="fa fa-clock-o"></i>${ev.hour} -
                             <i class="fa fa-calendar"></i> ${ev.date}<br>
                             <i class="fa fa-map"></i> ${usr.addresses[ev.adr].full_address}<br>
@@ -117,7 +118,7 @@ function setFavourite() {
 function setTags(t) {
     let tags = document.getElementById("tags")
     for (let i in t) {
-        tags.innerHTML += `<li class="col-4">${t[i]}</li>`
+        tags.innerHTML += `<li class="col-6">${t[i]}</li>`
     }
 
 }

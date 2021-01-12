@@ -146,6 +146,21 @@ function showHostProfile() {
     }
 }
 
+function showHostProfile_g(host) {
+    if (!logged_in) {
+        showLogin();
+    } else {
+        app.innerHTML = getUserPage_Guest(host);
+        _set_imgs_profile_g(host.pro_pric, host.bcg_pic);
+        _set_events_g(host.events);
+        adjust_header();
+        adjust_profile();
+
+        let backToHome = document.getElementById('back');
+        backToHome.onclick = () => goToHome();
+    }
+}
+
 function showCreateEvent() {
     if (!logged_in) {
         showLogin();
@@ -185,6 +200,10 @@ function showEventGuestSide(ev) {
 
         let backToHome = document.getElementById('back');
         backToHome.onclick = () => goToHome();
+
+        let imgToProfile = document.getElementById("img_profile")
+        imgToProfile.onclick = () => goShowProfile(user.id)
+
 
         let goToPayment = document.getElementById("book")
         if (ev.max_guests != ev.actual_guests) {
@@ -254,6 +273,20 @@ function goHostProfile() {
     return false;
 }
 
+function goShowProfile(host_id) {
+    let route = '/login';
+
+    if (logged_in && logged_in == host_id) {
+        route = '/profile';
+    }
+    else if (logged_in) {
+        route = `/profile/${host_id}`
+    }
+    router.navigate(route);
+
+    return false;
+}
+
 function goHostCreateEvent() {
     let route = '/login';
 
@@ -308,6 +341,7 @@ router
     .on("/hostLogin", showHostLogin)
     .on("/search", showSearch)
     .on("/profile", showHostProfile)
+    .on("/profile/:id", param => showHostProfile_g(JSON.parse(mySS.getItem(param.id))))
     .on("/create-event", showCreateEvent)
     .on("/edit-event", showEditEvent) //TODO
     .on("/show-event-host/:id", param => {
