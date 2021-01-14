@@ -6,7 +6,7 @@ function get_host_show_event_page(eventObj) {
             <h2 class="screen_title col-10">${eventObj.name}</h2>
         </div>
         <div class="row d-flex justify-content-around">
-            <button class="col-5 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
+            <button id="delet_btn" class="col-5 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
             <button class="col-5 btn btn-light"><i class="fa fa-pencil-square-o"
                     aria-hidden="true"></i>Edit</button>
         </div>
@@ -15,11 +15,16 @@ function get_host_show_event_page(eventObj) {
         <div></div>
         <h4 class="mt-3">Description</h4>
         <p class="text-justify">${eventObj.Description}</p>
-        <h5>Tags</h5>
-        <ul class="pl-5">
-            <li>Schifo</li>
-            <li>Bello</li>
-            <li>Carne</li>
+
+    </article>
+    <article>
+    <header class="text-center">
+            <h4> Tags </h4>
+        </header>
+        <ul class="text-center">
+            <div class="row mx-2">
+            ${getTags(eventObj.tags)}
+            </div>
         </ul>
     </article>
     <div class="row d-flex justify-content-around">
@@ -35,10 +40,10 @@ function get_host_show_event_page(eventObj) {
     </div>
     <div class="row d-flex justify-content-around">
         <article class="col-11">
-            <h4 class="mt-3">Where</h4>
-            <div style="width: 100%;height: 350px;background-color: aquamarine;">
-                MAPPA
-            </div>
+        <header class="text-center">
+        <h4> Where is it?</h4>
+    </header>
+            <div id="mapid_h"></div>
         </article>
     </div>
 
@@ -61,7 +66,44 @@ function get_host_show_event_page(eventObj) {
     return event_page;
 }
 
-function add_event_listeners_show_event_host() {
+function add_event_listeners_show_event_host(user, event_id, ss) {
 
     $('#go_back').click(() => router.navigate('/profile'));
+    $('#delet_btn').click(() => {
+        user.events = user.events.filter(e => e.id != event_id)
+        ss.setItem(user.id, JSON.stringify(user));
+        router.navigate('/profile')
+    })
+}
+
+function getTags(tag_list) {
+    let ret = "";
+    for (let _i = 0; _i < tag_list.length; _i++) {
+        const tag = tag_list[_i];
+        let new_tag = '<li class="col-6 text-left">' + tag + "</li>"
+        ret += new_tag;
+    }
+    return ret;
+
+}
+
+
+function create_event_map_h(ev, adr) {
+    let ww = $(window).width();
+    $('#mapid_h').width(ww);
+    $('#mapid_h').height(ww);
+
+    var map = L.map('mapid_h').setView([adr.lat, adr.long], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var chicken = L.marker([adr.lat, adr.long]).addTo(map);
+
+    chicken.bindPopup(`<img src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
+        .openPopup();
+
+    $('#mapid_h').width(ww * 0.8);
+    $('#mapid_h').height(ww * 0.8);
 }

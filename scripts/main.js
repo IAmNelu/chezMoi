@@ -179,8 +179,10 @@ function showEventHostSide(ev) {
     if (!logged_in) {
         showLogin();
     } else {
+        let user = get_user_from_event_id(ev.id)
         app.innerHTML = get_host_show_event_page(ev);
-        add_event_listeners_show_event_host();
+        add_event_listeners_show_event_host(user, ev.id, mySS);
+        create_event_map_h(ev, user.addresses[ev.adr]);
     }
 }
 
