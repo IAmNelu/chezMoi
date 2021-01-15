@@ -82,11 +82,15 @@ function getOneEventGuest(eventObj) {
     return event;
 }
 
+function get_remove_filter_button() {
+    const button = '<div class="text-center mb-3" id="rmv_filters"><button class="btn btn-light"><i class="fa fa-times" aria-hidden="true"></i>Reomve filters</button></div>';
+    return button;
+}
+
 
 function _set_events_guest(events_arr) {
     let events_container = $("#guest_events");
-
-    if (!events_arr | events_arr.length == 0) {
+    if (!events_arr) {
         //error no events
     } else {
         let _events = "";
@@ -94,6 +98,10 @@ function _set_events_guest(events_arr) {
             const element = events_arr[_i];
             _events += getOneEventGuest(element);
         }
+        if ((mySS.getItem('searchWord') && mySS.getItem('searchWord') != '') || (mySS.getItem('conditions') && mySS.getItem('conditions') != '')) {
+            _events += get_remove_filter_button();
+        }
+
         events_container.html(_events);
         for (let _i = 0; _i < events_arr.length; _i++) { //adding images with css after objs are created
             const element = `url("${events_arr[_i].picture}")`;
@@ -103,6 +111,10 @@ function _set_events_guest(events_arr) {
             $(art_id).click(_ => goToShowEventGuest(events_arr[_i].id))
             //TODO: ADD FUNCTION TO CLICK AND SHOW EVENT
         }
+        if ((mySS.getItem('searchWord') && mySS.getItem('searchWord') != '') || (mySS.getItem('conditions') && mySS.getItem('conditions') != '')) {
+            refresh_search();
+        }
+
     }
 }
 
@@ -128,28 +140,36 @@ function get_events_guests() {
     if (mySS.getItem("searchWord") && mySS.getItem("searchWord") != "") {
         searchWord = mySS.getItem("searchWord");
         searchWord = searchWord.toLowerCase();
-        console.log(searchWord)
     }
 
     var keys = Object.keys(mySS);
     var i = keys.length;
-
-    // Load events
-    while (i--) {
-        try {
-            let user = JSON.parse(mySS.getItem(keys[i]));
-            if (user.events) {
-                for (var i = 0; i < user.events.length; i++) {
-                    events.push(user.events[i]);
-                    events[i].ratings = user.ratings;
-                    events[i].full_address = user.addresses[events[i].adr]
-                }
-            }
+    let users_ids = JSON.parse(mySS.getItem("hosts"));
+    for (let _i = 0; _i < users_ids.length; _i++) {
+        let user = JSON.parse(mySS.getItem(users_ids[_i]));
+        let temp_events = user.events;
+        for (let _j = 0; _j < temp_events.length; _j++) {
+            temp_events[_j].ratings = user.ratings;
         }
-        catch (err) {
-            console.log('not a JSON');
-        }
+        events = events.concat(temp_events);
     }
+    console.log(events);
+    // // Load events
+    // while (i--) {
+    //     try {
+    //         let user = JSON.parse(mySS.getItem(keys[i]));
+    //         if (user.events) {
+    //             for (var i = 0; i < user.events.length; i++) {
+    //                 events.push(user.events[i]);
+    //                 events[i].ratings = user.ratings;
+    //                 events[i].full_address = user.addresses[events[i].adr]
+    //             }
+    //         }
+    //     }
+    //     catch (err) {
+    //         console.log('not a JSON');
+    //     }
+    // }
 
     // check for search conditions
     var filetered_events = [];
@@ -253,6 +273,8 @@ function searchWordSubmit() {
     } else {
         mySS.setItem('searchWord', (wordToSearch));
         let events = get_events_guests();
+        console.log('here')
+        console.log(events)
         _set_events_guest(events);
     }
 }
@@ -272,4 +294,30 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
 
 function deg2rad(deg) {
     return deg * (Math.PI / 180)
+}
+
+
+function add_event_listeners_search_simple() {
+    let form = document.forms["wordSearchForm"];
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+    })
+    $('#searchWordButton').click(ev => {
+        searchWordSubmit();
+    });
+    $('#searchButton').click(_ => {
+        goToSearch();
+    });
+    $('#goToProfile').click(_ => {
+        handleGoToProfile();
+    });
+}
+
+function refresh_search() {
+    $('#rmv_filters').click(_ => {
+        mySS.removeItem('searchWord');
+        mySS.removeItem("conditions");
+        let events = get_events_guests();
+        _set_events_guest(events);
+    });
 }

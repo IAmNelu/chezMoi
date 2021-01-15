@@ -89,56 +89,57 @@ const searchPage = `
             <nav class="navbar-light bg-light fixed-bottom">
                 <div class="container">
                     <div class="row float-right">
-                        <button type="submit" class="btn btn-primary m-3">Search</button>
+                        <button type="submit" id="search_button_complex" class="btn btn-primary m-3">Search</button>
                     </div>
                 </div>
             </nav>
         </form>
     </section>`;
 
-function submitSearch(){
-  console.log('searchForm submitted');
-  let searchForm = document.getElementById('searchForm');
+function submitSearch() {
+    console.log('searchForm submitted');
+    let searchForm = document.getElementById('searchForm');
 
-  if (searchForm.checkValidity()) {
-    let wordToSearchSpecific = searchForm.elements["wordToSearchSpecific"].value;
-    let radius = searchForm.elements["radius"].value;
-    let ratings = searchForm.elements["ratings"].value;
-    let maxPrice = searchForm.elements["maxPrice"].value;
-    let guests = searchForm.elements["guests"].value;
-    let date = searchForm.elements["searchDateInput"].value;
-    let hour = searchForm.elements["searchTimeInput"].value;
+    if (searchForm.checkValidity()) {
+        let wordToSearchSpecific = searchForm.elements["wordToSearchSpecific"].value;
+        let radius = searchForm.elements["radius"].value;
+        let ratings = searchForm.elements["ratings"].value;
+        let maxPrice = searchForm.elements["maxPrice"].value;
+        let guests = searchForm.elements["guests"].value;
+        let date = searchForm.elements["searchDateInput"].value;
+        let hour = searchForm.elements["searchTimeInput"].value;
 
-    let checkedTags = [];
-    for (var j = 0; j < tags_global.length; j++) {
-      if ( searchForm.elements[tags_global[j]].checked ){
-        checkedTags.push(tags_global[j]);
-      }
+        let checkedTags = [];
+        for (var j = 0; j < tags_global.length; j++) {
+            if (searchForm.elements[tags_global[j]].checked) {
+                checkedTags.push(tags_global[j]);
+            }
+        }
+
+        var conditions = {
+            "rating": ratings,
+            "max_price": maxPrice,
+            "guest_num": guests,
+            "date": date,
+            "hour": hour,
+            "radius": radius,
+            "tags": checkedTags
+        }
+
+        mySS.setItem('conditions', JSON.stringify(conditions));
+        if (wordToSearchSpecific) {
+            mySS.setItem('searchWord', (wordToSearchSpecific));
+        }
+        goToHome();
     }
-
-    var conditions = {
-      "rating" : ratings,
-      "max_price" : maxPrice,
-      "guest_num": guests,
-      "date": date,
-      "hour": hour,
-      "radius": radius,
-      "tags": checkedTags
-    }
-
-    mySS.setItem('conditions', JSON.stringify(conditions));
-    if (wordToSearchSpecific){ 
-      mySS.setItem('searchWord', (wordToSearchSpecific)); }
-    goToHome();
-  }
 }
 
-function initializeTags(){
-  let tagsContainer = document.getElementById('tagsContainer'); 
-  for (var j = 0; j < tags_global.length; j++) {
-    var tag = tags_global[j];
-    var newTag = document.createElement('div');
-    let tagCheckBox = `
+function initializeTags() {
+    let tagsContainer = document.getElementById('tagsContainer');
+    for (var j = 0; j < tags_global.length; j++) {
+        var tag = tags_global[j];
+        var newTag = document.createElement('div');
+        let tagCheckBox = `
           <div class="form-check">
             <div class="row">
               <span class="col-1"></span>
@@ -150,7 +151,17 @@ function initializeTags(){
               </span>
             </div>
           </div>`;
-    newTag.innerHTML = tagCheckBox;
-    tagsContainer.appendChild(newTag);
-  } 
+        newTag.innerHTML = tagCheckBox;
+        tagsContainer.appendChild(newTag);
+    }
+}
+
+function add_event_listeners_search_complex() {
+    let form = document.forms["searchForm"];
+    form.addEventListener("submit", (ev) => {
+        ev.preventDefault()
+    })
+    $('#search_button_complex').click(ev => {
+        submitSearch();
+    });
 }
