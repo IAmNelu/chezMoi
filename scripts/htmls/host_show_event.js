@@ -3,7 +3,7 @@ function get_host_show_event_page(eventObj) {
     <header>
         <div class="row py-2">
             <i id="go_back" class="fa fa-arrow-left col-1 back_arrow" aria-hidden="true"></i>
-            <h2 class="screen_title col-10">${eventObj.name}</h2>
+            <h2 class="screen_title col-10">${eventObj.name} - €${eventObj.price}</h2>
         </div>
         <div class="row d-flex justify-content-around">
             <button id="delet_btn" class="col-5 btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>Delete</button>
@@ -51,9 +51,9 @@ function get_host_show_event_page(eventObj) {
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col text-center"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
+                    <div class="col text-center" id="become_guest"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
                     </div>
-                    <div class="col text-center"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
+                    <div class="col text-center" id="add_new_event"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
                         Event
                     </div>
                     <div class="col text-center"><i class="fa fa-comments-o btn_ico"
@@ -67,13 +67,16 @@ function get_host_show_event_page(eventObj) {
 }
 
 function add_event_listeners_show_event_host(user, event_id, ss) {
-
+    $('#add_new_event').click(goHostCreateEvent);
     $('#go_back').click(() => router.navigate('/profile'));
     $('#delet_btn').click(() => {
         user.events = user.events.filter(e => e.id != event_id)
         ss.setItem(user.id, JSON.stringify(user));
         router.navigate('/profile')
     })
+    $('#become_guest').click(_ => {
+        goToHome();
+    });
 }
 
 function getTags(tag_list) {

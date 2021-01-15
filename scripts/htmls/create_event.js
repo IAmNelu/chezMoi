@@ -66,9 +66,9 @@ function get_create_page(user) {
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col text-center"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
+                    <div class="col text-center" id="become_guest"><i class="fa fa-refresh btn_ico" aria-hidden="true"></i><br>Guest
                     </div>
-                    <div class="col text-center"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
+                    <div class="col text-center" id="add_new_event"><i class="fa fa-plus-circle btn_ico" aria-hidden="true"></i><br>Add
                         Event
                     </div>
                     <div class="col text-center"><i class="fa fa-comments-o btn_ico"
@@ -82,49 +82,59 @@ function get_create_page(user) {
 }
 
 function add_event_listeners_create(user) {
+    $('#become_guest').click(_ => {
+        goToHome();
+    });
+    $('#add_new_event').click(_ => {
+        _add_event_function(user);
+    });
     $('#go_back').click(goHostProfile);
     $("#btn_create_event").click(() => {
-        let form = document.forms["_create_event_form"];
-        var now_date = new Date();
-
-        if (form.checkValidity()) {
-
-            let date_cs = form["EventDateInput"].value.split('-');
-            let time_cs = form["EventTimeInput"].value.split(':');
-            let ev_date = new Date(date_cs[0], date_cs[1] - 1, date_cs[2]);
-            ev_date.setHours(time_cs[0]);
-            ev_date.setMinutes(time_cs[1]);
-            if (ev_date <= now_date) {
-                alert("You cannot schedule an event before the current time");
-            } else {
-                let last_id_p = user.events[user.events.length - 1].id.split('__');
-                let new_ev_id = [last_id_p[0].split('_')[0] + '_' + (parseInt(last_id_p[0].split('_')[1]) + 1)]
-                let new_id = new_ev_id.concat(last_id_p.slice(1)).join('__');
-                let adr_key = $('input[name=adress_selection]:checked', '#_create_event_form').val();
-                let tags = get_selected_tag();
-
-                new_ev = {
-                    "id": new_id,
-                    "name": form["EventNameInput"].value,
-                    "price": form["EventPriceInput"].value,
-                    "max_guests": form["EventGuestsInput"].value,
-                    "actual_guests": 0,
-                    "Description": form["EventDescriptionInput"].value,
-                    "date": date_cs[2] + '/' + date_cs[1] + '/' + date_cs[0],
-                    "hour": form["EventTimeInput"].value,
-                    "adr": adr_key,
-                    "picture": "../images/paceholder.png",
-                    "tags": tags
-                }
-                user.events.push(new_ev);
-                updateUser(user)
-                goHostProfile();
-            }
-        } else {
-            alert("missing Fields");
-        }
+        _add_event_function(user);
     });
     eventsTags();
+}
+
+function _add_event_function(user) {
+    let form = document.forms["_create_event_form"];
+    var now_date = new Date();
+
+    if (form.checkValidity()) {
+
+        let date_cs = form["EventDateInput"].value.split('-');
+        let time_cs = form["EventTimeInput"].value.split(':');
+        let ev_date = new Date(date_cs[0], date_cs[1] - 1, date_cs[2]);
+        ev_date.setHours(time_cs[0]);
+        ev_date.setMinutes(time_cs[1]);
+        if (ev_date <= now_date) {
+            alert("You cannot schedule an event before the current time");
+        } else {
+            let last_id_p = user.events[user.events.length - 1].id.split('__');
+            let new_ev_id = [last_id_p[0].split('_')[0] + '_' + (parseInt(last_id_p[0].split('_')[1]) + 1)]
+            let new_id = new_ev_id.concat(last_id_p.slice(1)).join('__');
+            let adr_key = $('input[name=adress_selection]:checked', '#_create_event_form').val();
+            let tags = get_selected_tag();
+
+            new_ev = {
+                "id": new_id,
+                "name": form["EventNameInput"].value,
+                "price": form["EventPriceInput"].value,
+                "max_guests": form["EventGuestsInput"].value,
+                "actual_guests": 0,
+                "Description": form["EventDescriptionInput"].value,
+                "date": date_cs[2] + '/' + date_cs[1] + '/' + date_cs[0],
+                "hour": form["EventTimeInput"].value,
+                "adr": adr_key,
+                "picture": "../images/paceholder.png",
+                "tags": tags
+            }
+            user.events.push(new_ev);
+            updateUser(user)
+            goHostProfile();
+        }
+    } else {
+        alert("missing Fields");
+    }
 }
 
 function eventsTags() {
