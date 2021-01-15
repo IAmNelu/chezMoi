@@ -92,12 +92,13 @@ function showHome() {
         showMap();
         let events = get_events_guests();
         _set_events_guest(events);
-        let searchButton = document.getElementById('searchButton');
-        searchButton.onclick = () => goToSearch();
-        let wordSearchForm = document.getElementById('wordSearchForm');
-        wordSearchForm.onsubmit = () => searchWordSubmit();
-        let goToProfile = document.getElementById('goToProfile');
-        goToProfile.onclick = () => handleGoToProfile();
+        // let searchButton = document.getElementById('searchButton');
+        // searchButton.onclick = () => goToSearch();
+        // let wordSearchForm = document.getElementById('wordSearchForm');
+        // wordSearchForm.onsubmit = () => searchWordSubmit();
+        // let goToProfile = document.getElementById('goToProfile');
+        // goToProfile.onclick = () => handleGoToProfile();
+        add_event_listeners_search_simple();
     }
 }
 
@@ -126,8 +127,9 @@ function showSearch() {
         initializeTags();
         let backToHome = document.getElementById('backToHome');
         backToHome.onclick = () => goToHome();
-        let searchForm = document.getElementById('searchForm');
-        searchForm.onsubmit = () => submitSearch();
+        // let searchForm = document.getElementById('searchForm');
+        // searchForm.onsubmit = () => submitSearch();
+        add_event_listeners_search_complex();
     }
 }
 
