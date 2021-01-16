@@ -1,0 +1,225 @@
+.main_location_pic{
+    width: 100%;
+    /* background-image: url("../images/app_cooking_mama.jpg"); */
+    background-position: center;/* Do not repeat the image */
+    background-size: cover;/* Resize the background image to cover the entire container */
+}
+
+.avatar_profile_g{
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 30%;
+    margin: auto;
+    z-index: 10;
+    /* background-image: url("../images/profile_cooking_mama.png"); */
+    background-position: center;/* Do not repeat the image */
+    background-size: cover;/* Resize the background image to cover the entire container */
+
+}
+
+.avatar_profile{
+    border-radius: 50%;
+    border: 10px solid white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 50%;
+    margin: auto;
+    z-index: 10;
+    /* background-image: url("../images/profile_cooking_mama.png"); */
+    background-position: center;/* Do not repeat the image */
+    background-size: cover;/* Resize the background image to cover the entire container */
+
+}
+
+.image_card{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    background-position: center;/* Do not repeat the image */
+    background-size: cover;/* Resize the background image to cover the entire container */
+}
+
+.incard_description, .incard_date{
+    font-size: 10pt;
+}
+
+
+.btn{
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn_ico{
+    font-size: 25pt;
+}
+
+.margin_bootom_big{
+    padding-bottom: 5.5em;
+
+}
+
+.margin_bootom_big * {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+}
+.screen_title{
+    text-align: center;
+}
+
+#EventDescriptionInput, #form_description_area{
+    width: 100%;
+}
+#EventNameInput{
+    width: 100%; 
+}
+
+#EventGuestsInput, #EventPriceInput{
+    text-align: right;
+}
+
+.back_arrow{
+    margin-top: .8em;;
+}
+
+.edit_btn{
+    box-shadow: none;
+}
+
+.card{
+    padding-left: 0;
+}
+.tags_item_drop{
+    margin-bottom: 0;
+}
+
+.seleced_checks{
+    margin-top: 1em;
+}
+
+#selected * {
+    background-color: #EAEAEA;
+}
+
+
+
+.warning{
+    color: red;
+}
+
+.disable{
+    color: silver;
+}
+
+body{
+    width: 100%;
+}
+
+.profile_name{
+    display: inline;
+}
+
+
+.btn{
+    box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn_ico{
+    font-size: 25pt;
+}
+
+
+.margin_bottom_medium *{
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    padding-bottom: 0.5em;
+
+}
+
+.margin_bottom_big {
+    padding-bottom: 5.5em;
+}
+
+.margin_centered *{
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+}
+
+
+#EventDescriptionInput{
+    width: 100%;
+}
+#EventNameInput{
+    width: 100%; 
+}
+
+#EventGuestsInput, #EventPriceInput{
+    text-align: right;
+}
+h2{
+    color: #342628;
+}
+
+.tags{
+    padding-left: 1em;
+}
+
+article {
+    position: relative; 
+    line-height: 1.5;
+    }
+
+nav {
+    position: fixed;
+    bottom: auto;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+
+  .round {
+    border-radius: 50%;
+  }
+
+  ul{
+    list-style-type: none;
+  }
+
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 6vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
