@@ -14,8 +14,8 @@ function getUserPage_Guest(userObj) {
             <div class="col-12 text-center">
                 <h1 class="profile_name">${userObj.name} <span class="ratings" id="actual_rate">${userObj.ratings}<i class="fa fa-star"
                             aria-hidden="true"></i></span></h1>
-                            <div class="rating" id="vote"> 
-                            <button class="btn btn-primary" id="rate"> rate me!</button>
+                            <div class="rating py-2" id="vote"> 
+                            <button class="btn btn-light  ml-2" id="rate"> rate me!</button>
                             <input type="radio" class="r" name="rating" value="5" id="5" checked><label for="5">☆</label> 
                             <input type="radio" class="r" name="rating" value="4" id="4"><label for="4">☆</label> 
                             <input type="radio" class="r" name="rating" value="3" id="3"><label for="3">☆</label> 
@@ -71,7 +71,7 @@ function getUserPage_Guest(userObj) {
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-3 text-center"><i class="fa fa-search btn_ico" aria-hidden="true"></i><br>Search
+                    <div class="col-3 text-center" id="up"><i class="fa fa-search btn_ico" aria-hidden="true"></i><br>Search
                     </div>
                     <div class="col-3 text-center"><i class="fa fa-heart-o btn_ico" aria-hidden="true"></i><br>Favourites
                     </div>

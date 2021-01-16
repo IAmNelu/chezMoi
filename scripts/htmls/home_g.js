@@ -41,7 +41,7 @@ const homePageUser = `
         <nav class="navbar-light bg-light fixed-bottom py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-3 text-center"><i class="fa fa-search btn_ico" aria-hidden="true"></i><br>Search
+                    <div class="col-3 text-center" id="up"><i class="fa fa-search btn_ico" aria-hidden="true"></i><br>Search
                     </div>
                     <div class="col-3 text-center"><i class="fa fa-heart-o btn_ico" aria-hidden="true"></i><br>Favourites
                     </div>
@@ -83,7 +83,7 @@ function getOneEventGuest(eventObj) {
 }
 
 function get_remove_filter_button() {
-    const button = '<div class="text-center mb-3" id="rmv_filters"><button class="btn btn-light"><i class="fa fa-times" aria-hidden="true"></i>Reomve filters</button></div>';
+    const button = '<div class="text-center mb-3" id="rmv_filters"><button class="btn btn-light"><i class="fa fa-times" aria-hidden="true"></i>Remove filters</button></div>';
     return button;
 }
 
@@ -116,6 +116,7 @@ function _set_events_guest(events_arr) {
         }
 
     }
+
 }
 
 function get_events_guests() {
@@ -311,6 +312,7 @@ function add_event_listeners_search_simple() {
     $('#goToProfile').click(_ => {
         handleGoToProfile();
     });
+    $('#up').click(goToSearch)
 }
 
 function refresh_search() {

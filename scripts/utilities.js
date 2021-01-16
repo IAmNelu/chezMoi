@@ -10,6 +10,7 @@ function handle_login() {
         if (form.checkValidity()) {
             let user_name = form.elements["usr"].value;
             let hosts = JSON.parse(mySS.getItem("hosts"));
+            mySS.removeItem("rated")
             if (hosts.includes(user_name)) {
                 mySS.setItem('logged_in', user_name);
                 logged_in = mySS.getItem('logged_in');
@@ -27,12 +28,16 @@ function handle_login() {
 }
 
 function showMap() {
+    _map_stuff();
     getLocation();
 }
 
 function _map_stuff() {
 
     var user_postion = JSON.parse(mySS.getItem("user_position"));
+    if (!user_postion)
+        user_postion = { latitude: 40.554222599, longitude: 17.7236034 }
+    console.log(user_postion)
     let w = parseInt(window.innerWidth * 0.9);
     $('#mapid').width(w);
     $('#mapid').height(w);

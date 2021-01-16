@@ -1,12 +1,6 @@
 'use strict';
 
 
-//TODO (?) check if logged user already booked -> what about booking we want to "remove"? ->2.0
-//TODO (?) Favourites -> 2.0
-//TODO (?) metadata
-
-//TODO: evaluate star rate
-
 
 let price = 0
 let guest_possible = 0

@@ -104,13 +104,14 @@ function showHome() {
 }
 
 function showLogin() {
+
     app.innerHTML = loginPage
     handle_login();
 }
 
 function showHostLogin() {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         app.innerHTML = hostLoginPage;
         let loginAsUser = document.getElementById('loginAsUser');
@@ -122,7 +123,7 @@ function showHostLogin() {
 
 function showSearch() {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         app.innerHTML = searchPage;
         initializeTags();
@@ -136,7 +137,7 @@ function showSearch() {
 
 function showHostProfile() {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         let user = get_user();
         app.innerHTML = getUserPage(user);
@@ -151,7 +152,7 @@ function showHostProfile() {
 
 function showHostProfile_g(host) {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         app.innerHTML = getUserPage_Guest(host);
         _set_imgs_profile_g(host.pro_pric, host.bcg_pic);
@@ -162,12 +163,15 @@ function showHostProfile_g(host) {
 
         let backToHome = document.getElementById('back');
         backToHome.onclick = () => goToHome();
+
+        let back2 = document.getElementById('up');
+        back2.onclick = () => goToHome();
     }
 }
 
 function showCreateEvent() {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         let user = get_user();
         app.innerHTML = get_create_page(user);
@@ -181,7 +185,7 @@ function showEditEvent() {
 
 function showEventHostSide(ev) {
     if (!logged_in) {
-        showLogin();
+        goToLogin();
     } else {
         let user = get_user_from_event_id(ev.id)
         app.innerHTML = get_host_show_event_page(ev);
@@ -192,7 +196,7 @@ function showEventHostSide(ev) {
 
 function showEventGuestSide(ev) {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         let user = get_user_from_event_id(ev.id)
         app.innerHTML = get_guest_show_event(ev, user)
@@ -225,7 +229,7 @@ function showEventGuestSide(ev) {
 
 function showBookingEvent(ev) {
     if (!logged_in) {
-        showLogin();
+        goToLogin()
     } else {
         app.innerHTML = booking_page(ev)
         setMaxGuests(ev)
@@ -239,6 +243,10 @@ function showBookingEvent(ev) {
 
 
 //go functions
+function goToLogin() {
+    let route = "/login"
+    router.navigate(route)
+}
 
 function goToHome() {
     let route = '/login';

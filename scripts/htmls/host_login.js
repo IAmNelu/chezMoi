@@ -12,7 +12,7 @@ const hostLoginPage = `<!-- Search bar -->
         <h4 class="text-center col-10">You are registered both as host and as user!</h4>
     </div> 
     <div class="row justify-content-center my-4">
-        <button class="btn btn-primary" id="loginAsUser">Login as user</button>
+        <button class="btn btn-primary" id="loginAsUser">Login as guest</button>
     </div> 
     <div class="row justify-content-center my-4">
     <button class="btn btn-primary" id="loginAsHost">Login as host</button>
