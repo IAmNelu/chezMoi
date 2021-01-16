@@ -8,23 +8,27 @@ function getUserPage_Guest(userObj) {
 </button>
     </header>
 
-    <div class="container margin_bootom_big">
+    <div class="container margin_bottom_big">
         <div class="avatar_profile"></div>
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="profile_name">${userObj.name} <span class="rating">${userObj.ratings}<i class="fa fa-star"
+                <h1 class="profile_name">${userObj.name} <span class="ratings" id="actual_rate">${userObj.ratings}<i class="fa fa-star"
                             aria-hidden="true"></i></span></h1>
-            </div>
-            <div class="col-2">
-
-            </div>
+                            <div class="rating" id="vote"> 
+                            <button class="btn btn-primary" id="rate"> rate me!</button>
+                            <input type="radio" class="r" name="rating" value="5" id="5" checked><label for="5">☆</label> 
+                            <input type="radio" class="r" name="rating" value="4" id="4"><label for="4">☆</label> 
+                            <input type="radio" class="r" name="rating" value="3" id="3"><label for="3">☆</label> 
+                            <input type="radio" class="r" name="rating" value="2" id="2"><label for="2">☆</label> 
+                            <input type="radio" class="r" name="rating" value="1" id="1"><label for="1">☆</label>
+                            
+                            </div>            
         </div>
+</div>
         <article>
-            <div class="row">
-                <div >
-                    <h4 >About ME</h4>
-                </div>
-            </div>
+            <header>
+                    <h4 class="text-center">About ME</h4>
+             </header>   
             <div id="small_description">
                 <div class="row">
                     <p class="col-12">
@@ -111,7 +115,24 @@ function getOneEvent_g(eventObj) {
     return event;
 }
 
+function handle_rate(usr) {
+    let l = getListVoted()
+    for (let elem in l) {
+        if (usr == l[elem]) {
+            document.getElementById("vote").parentNode.removeChild(document.getElementById("vote"))
+            return
+        }
+    }
 
+    let button = document.getElementById("rate")
+    button.addEventListener('click', () => {
+        var rated_value = $('.r:checked').val();
+        let r = update_usr_rate(usr, rated_value)
+        document.getElementById("vote").parentNode.removeChild(document.getElementById("vote"))
+        document.getElementById("actual_rate").innerHTML = `${r}<i class="fa fa-star"
+        aria-hidden="true"></i>`
+    })
+}
 
 
 function _set_imgs_profile_g(propic_l, bck_l) {
