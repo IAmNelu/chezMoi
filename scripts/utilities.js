@@ -1,3 +1,4 @@
+
 // Form handling
 function handle_login() {
     let form = document.forms["loginForm"];
@@ -93,7 +94,7 @@ function showPosition(position) {
     _map_stuff();
 }
 
-function handleGoToProfile(){
+function handleGoToProfile() {
     let hosts = JSON.parse(mySS.getItem("hosts"));
     let user_id = get_user_id();
     if (hosts.includes(user_id)) {
@@ -123,6 +124,19 @@ function get_user_from_event_id(id) {
 //graphics
 function adjust_profile() {
     let prof_av = $('.avatar_profile').first();
+    let w = prof_av.width();
+    prof_av.height(w);
+    if (window.innerHeight > window.innerWidth) {
+        //portrait
+        prof_av.css('margin-top', '-6em');
+    } else {
+        prof_av.css('margin-top', '-16em');
+    }
+}
+
+
+function adjust_profile_g() {
+    let prof_av = $('.avatar_profile_g').first();
     let w = prof_av.width();
     prof_av.height(w);
     if (window.innerHeight > window.innerWidth) {
@@ -163,4 +177,26 @@ function edit_description(uid) {
 }
 function cancel_edit() {
     showHostProfile();
+}
+
+function getListVoted() {
+    let result = JSON.parse(mySS.getItem("rated"))
+    return result
+}
+
+function update_usr_rate(uid, value) {
+    let l = getListVoted()
+    if (l == null)
+        l = [uid]
+    else
+        l.push(uid)
+    mySS.setItem("rated", JSON.stringify(l))
+    let u = JSON.parse(mySS.getItem(uid))
+
+    let total = u.ratings * u.n_ratings
+    u.n_ratings++
+    let new_rate = Math.round(((total + parseInt(value)) / u.n_ratings) * 100) / 100
+    u.ratings = new_rate
+    mySS.setItem(uid, JSON.stringify(u))
+    return new_rate
 }

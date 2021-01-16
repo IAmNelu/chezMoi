@@ -4,6 +4,7 @@ let obj = {
     "id": "user_id_1",
     "name": "Cooking MAMA",
     "ratings": 4.9,
+    "n_ratings": 20,
     "pro_pric": "../images/profile_cooking_mama.png",
     "bcg_pic": "../images/app_cooking_mama.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
@@ -157,6 +158,7 @@ function showHostProfile_g(host) {
         _set_events_g(host.events);
         adjust_header();
         adjust_profile();
+        handle_rate(host.id);
 
         let backToHome = document.getElementById('back');
         backToHome.onclick = () => goToHome();
@@ -194,9 +196,9 @@ function showEventGuestSide(ev) {
     } else {
         let user = get_user_from_event_id(ev.id)
         app.innerHTML = get_guest_show_event(ev, user)
-        _set_imgs_profile(user.pro_pric, ev.picture);
+        _set_imgs_event(user.pro_pric, ev.picture)
         adjust_header();
-        adjust_profile();
+        adjust_profile_g();
         create_event_map(ev, user.addresses[ev.adr])
         setFavourite();
         setTags(ev.tags);

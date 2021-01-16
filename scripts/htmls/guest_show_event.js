@@ -8,22 +8,22 @@ function get_guest_show_event(ev, usr) {
         </button>
 
     </header>
-    <div class="avatar_profile " id = "img_profile"></div>
-    <div class="container margin_bootom_big margin_centered">
+    <div class="avatar_profile_g" id = "img_profile"></div>
+    <div class="container margin_bottom_big margin_centered">
 
-        <div class="margin_bootom_medium">
+        <div class="margin_bottom_medium" >
             <article>
                 <div class="row">
                     <div class="col-12 text-center">
                         <span>
                             <i class="fa fa-heart-o text-left fa-2x" id="favourite" aria-hidden="true"></i>
-                            <h1 class="profile_name text-center">
+                            <h1 class="profile_name text-center" >
                                 ${ev.name}
                             </h1>
                         </span><br>
                         <div class="text-center">
                         
-                        <i class="fa fa-star"></i>${usr.ratings}, ${usr.name} <br>
+                            <i class="fa fa-star"></i>${usr.ratings}, ${usr.name} <br>
                             <i class="fa fa-clock-o"></i>${ev.hour} -
                             <i class="fa fa-calendar"></i> ${ev.date}<br>
                             <i class="fa fa-map"></i> ${usr.addresses[ev.adr].full_address}<br>
@@ -39,7 +39,7 @@ function get_guest_show_event(ev, usr) {
             </header>
             <div id="Description">
                 <div class=" text-justify ">
-                    <p class="px-2 ">
+                    <p class="px-2 " >
                         ${ev.Description}
                     </p>
 
@@ -85,6 +85,15 @@ function get_guest_show_event(ev, usr) {
     </footer>
 `
 }
+
+function _set_imgs_event(propic_l, bck_l) {
+    let pl = `url("${propic_l}")`;
+    let bl = `url("${bck_l}")`;
+    $(".main_location_pic").first().css("background-image", bl);
+    $(".avatar_profile_g").first().css("background-image", pl);
+
+}
+
 
 function create_event_map(ev, adr) {
     var map = L.map('mapid').setView([adr.lat, adr.long], 13);
