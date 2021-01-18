@@ -57,7 +57,7 @@ function get_guest_show_event(ev, usr) {
             </div>
         </article>
 
-        <article>
+        <article class="map_container">
             <header class="text-center">
                 <h4> Tags </h4>
             </header>

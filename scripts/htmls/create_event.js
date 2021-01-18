@@ -215,7 +215,7 @@ function get_selected_tag() {
 
 let tags_global = ["meat",
     "fish",
-    "vegetrain",
+    "vegetarian",
     "vegan",
     "gluten-free",
     "bio",
