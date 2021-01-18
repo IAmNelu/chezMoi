@@ -189,7 +189,6 @@ function refresDropDown() {
 function addCheck() {
     let tag = `<div class="seleced_checks">`;
     $('#selected').children().each(index => {
-        // console.log($('#selected').children()[0])
         let val = $('#selected').children()[index].innerHTML
         tag += `<div class="selected_checks"><i class="fa fa-times" aria-hidden="true"></i><span>${val}</span></div>`;
     })
