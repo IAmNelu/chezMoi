@@ -183,10 +183,7 @@ function handlePayment(ev) {
                 setTimeout(function () {
                     let u = get_user_from_event_id(ev.id)
                     u.events[ev.id.split("_")[1]] = ev
-                    console.log(u.events[ev.id.split("_")[1]])
-                    console.log(ev.id.split("_")[1])
                     mySS.setItem(u.id, JSON.stringify(u))
-                    //TODO: update cache
                     goToShowEventGuest(ev.id)
                 }, 1500)
             }
@@ -203,10 +200,8 @@ function handlePayment(ev) {
 
                 let u = get_user_from_event_id(ev.id)
                 u.events[ev.id.split("_")[1]] = ev
-                console.log(u.events[ev.id.split("_")[1]])
-                console.log(ev.id.split("_")[1])
+
                 mySS.setItem(u.id, JSON.stringify(u))
-                //console.log(mySS)
                 goToShowEventGuest(ev.id)
             }, 1500)
         }

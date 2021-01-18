@@ -107,7 +107,6 @@ mySS.setItem('hosts', JSON.stringify(["user_id_1", "user_id_2"]));
 //     return;
 // });
 
-console.log(mySS.getItem('logged_in'))
 
 let logged_in = "";
 

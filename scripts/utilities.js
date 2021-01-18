@@ -1,4 +1,6 @@
 
+var map = null;
+
 // Form handling
 function handle_login() {
     let form = document.forms["loginForm"];
@@ -18,7 +20,6 @@ function handle_login() {
             } else {
                 mySS.setItem('logged_in', user_name);
                 logged_in = mySS.getItem('logged_in');
-                console.log("not here");
                 goToHome();
             }
 
@@ -37,11 +38,22 @@ function _map_stuff() {
     var user_postion = JSON.parse(mySS.getItem("user_position"));
     if (!user_postion)
         user_postion = { latitude: 40.554222599, longitude: 17.7236034 }
-    console.log(user_postion)
     let w = parseInt(window.innerWidth * 0.9);
     $('#mapid').width(w);
     $('#mapid').height(w);
-    var map = L.map('mapid').setView([user_postion.latitude, user_postion.longitude], 13);
+    if (map == null) {
+        map = new L.Map('mapid');
+    }
+    map.setView([user_postion.latitude, user_postion.longitude], 13);
+
+
+
+    // if ($('#mapid').children().length == 0) {
+    //     var map = L.map('mapid').setView([user_postion.latitude, user_postion.longitude], 13);
+    // } else {
+    //     var map = L.map('mapid');
+    // }
+
 
     //var map = L.map('mapid').setView([40.554222599, 17.7236034], 13);
 
@@ -53,32 +65,18 @@ function _map_stuff() {
     you.bindPopup('<i class="fa fa-user-circle-o btn_ico" aria-hidden="true"></i><br><br><b>You are here</b>')
         .openPopup();
 
+
     // Mark position of all hosts in a certain area
-    var keys = Object.keys(mySS);
-    var i = keys.length;
+    let events = get_events_guests();
+    for (let _j = 0; _j < events.length; _j++) {
+        const s_e = events[_j];
+        let adr_id = s_e.adr;
+        let lat_lon = get_user_from_event_id(s_e.id).addresses[adr_id];
+        let marker_tmp = L.marker([lat_lon.lat, lat_lon.long]).addTo(map);
+        marker_tmp.bindPopup('<img src="' + s_e.picture + '" class="w-100"><br><br><b>' + s_e.name + '</b>')
+            .openPopup();
 
-    // Load users and hosts
-    while (i--) {
-        try {
-            let user = JSON.parse(mySS.getItem(keys[i]));
-            if (user.addresses) {
-                var hostLat = user.addresses.adr1.lat;
-                var hostLong = user.addresses.adr1.long;
-                var hostName = user.name;
-                var hostPicUrl = user.pro_pric;
-                var cooking_mama = L.marker([hostLat, hostLong]).addTo(map);
-                cooking_mama.bindPopup('<img src="' + hostPicUrl + '" class="w-100"><br><br><b>' + hostName + '</b>')
-                    .openPopup();
-            }
-        }
-        catch (err) {
-            console.log('not a JSON');
-        }
     }
-
-    // var cooking_mama = L.marker([40.552, 17.710]).addTo(map);
-    // cooking_mama.bindPopup('<img src="images/profile_cooking_mama.png" class="w-100"><br><br><b>Cooking mama</b>')
-    //     .openPopup();
 
 }
 

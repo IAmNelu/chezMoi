@@ -154,23 +154,6 @@ function get_events_guests() {
         }
         events = events.concat(temp_events);
     }
-    console.log(events);
-    // // Load events
-    // while (i--) {
-    //     try {
-    //         let user = JSON.parse(mySS.getItem(keys[i]));
-    //         if (user.events) {
-    //             for (var i = 0; i < user.events.length; i++) {
-    //                 events.push(user.events[i]);
-    //                 events[i].ratings = user.ratings;
-    //                 events[i].full_address = user.addresses[events[i].adr]
-    //             }
-    //         }
-    //     }
-    //     catch (err) {
-    //         console.log('not a JSON');
-    //     }
-    // }
 
     // check for search conditions
     var filetered_events = [];
@@ -185,13 +168,12 @@ function get_events_guests() {
         if (conditions.max_price && checksConditions) {
             if (event.price > conditions.max_price) {
                 checksConditions = false;
-                console.log('max price exceded')
             }
         }
         if (conditions.guest_num && checksConditions) {
             if ((event.max_guests - event.actual_guests) <= conditions.guest_num) {
                 checksConditions = false;
-                console.log('too many guests for this event')
+
             }
         }
         if (conditions.date && checksConditions) {
@@ -223,7 +205,6 @@ function get_events_guests() {
             eventDate = new Date(day, month, year, hour, min);
             if (eventDate > conditionDate) {
                 checksConditions = false;
-                console.log('the date of this event is after the deadline');
             }
         }
         if (conditions.radius && checksConditions) {
@@ -235,14 +216,14 @@ function get_events_guests() {
             var distance_meters = getDistanceFromLatLonInKm(eventLat, eventLon, userLat, userLon) * 1000;
             if (distance_meters > conditions.radius) {
                 checksConditions = false;
-                console.log('this event is too distant')
+
             }
         }
         for (var j = 0; j < conditions.tags.length; j++) {
             var tag = conditions.tags[j];
             if (tag && !event.tags.includes(tag)) {
                 checksConditions = false;
-                console.log('this event does not include ', tag)
+
             }
         }
 
@@ -251,7 +232,6 @@ function get_events_guests() {
             var eventName = (event.name).toLowerCase();
             if (!evenDescription.includes(searchWord) && !eventName.includes(searchWord)) {
                 checksConditions = false;
-                console.log('the word', searchWord, 'is not in this event');
             }
         }
 
@@ -274,8 +254,6 @@ function searchWordSubmit() {
     } else {
         mySS.setItem('searchWord', (wordToSearch));
         let events = get_events_guests();
-        console.log('here')
-        console.log(events)
         _set_events_guest(events);
     }
 }

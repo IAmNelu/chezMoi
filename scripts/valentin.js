@@ -122,8 +122,6 @@ function post_event(event) {
 //event function
 function edit_event(event_id) {
     let x = get_event(event_id);
-    console.log('edit');
-    console.log(x);
 
 }
 
@@ -203,7 +201,6 @@ function add_newEvent() {
     let ev_description = $('#EventDescriptionInput').val();
     let ev_price = parseInt($('#EventPriceInput').val());
     let ev_max_guests = parseInt($('#EventGuestsInput').val());
-    console.log(ev_max_guests)
     if (ev_name.length == 0) return "Missing Name";
     if (ev_description.length == 0) return "Missing Description";
     if (!ev_price) return "Missing Price";

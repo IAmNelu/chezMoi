@@ -97,7 +97,6 @@ const searchPage = `
     </section>`;
 
 function submitSearch() {
-    console.log('searchForm submitted');
     let searchForm = document.getElementById('searchForm');
 
     if (searchForm.checkValidity()) {
