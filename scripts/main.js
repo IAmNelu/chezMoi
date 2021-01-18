@@ -22,8 +22,8 @@ let obj = {
             "price": 10,
             "max_guests": 6,
             "actual_guests": 4,
-            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?",
-            "date": "01/01/2021",
+            "Description": "From the most popular cooking video game, here's a simple but tasty chicken.<br><div class='text-center'> <b>Menu:</b> <br> chicken <br> potatoes <br> dessert</div>",
+            "date": "25/01/2021",
             "hour": "12:00",
             "adr": "adr1",
             "picture": "../images/chicken_meal.jpg",
@@ -40,8 +40,8 @@ let obj = {
             "price": 15,
             "max_guests": 8,
             "actual_guests": 1,
-            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?,",
-            "date": "01/01/2021",
+            "Description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
+            "date": "22/01/2021",
             "hour": "18:00",
             "adr": "adr1",
             "picture": "../images/fish_meal.png",
@@ -53,8 +53,47 @@ let obj = {
         }
     ]
 }
+
+let obj_2 = {
+    "id": "user_id_2",
+    "name": "Remi",
+    "ratings": 4.2,
+    "n_ratings": 20,
+    "pro_pric": "../images/remy.jpg",
+    "bcg_pic": "../images/chez_gusteau.jpg",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
+    "addresses": {
+        "adr1": {
+            "lat": 40.522,
+            "long": 17.700,
+            "full_address": "15, Avenue des Ratatouille"
+        }
+    },
+    "events": [
+        {
+            "id": "ev_0__event_Remi_events__user_id_2",
+            "name": "Ratatouille",
+            "price": 12,
+            "max_guests": 7,
+            "actual_guests": 2,
+            "Description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, architecto?<br><div class='text-center'> <b>Menu:</b> <br> Appetizer<br> Ratatouille</div>",
+            "date": "21/01/2021",
+            "hour": "20:00",
+            "adr": "adr1",
+            "picture": "../images/Ratatouille.jpg",
+            "tags": [
+                "dinner",
+                "gluten-free",
+                "bio",
+                "vegetarian"
+            ]
+        },
+    ]
+}
+
 if (!mySS.getItem('user_id_1')) mySS.setItem('user_id_1', JSON.stringify(obj));
-mySS.setItem('hosts', JSON.stringify(["user_id_1"]));
+if (!mySS.getItem('user_id_2')) mySS.setItem('user_id_2', JSON.stringify(obj_2));
+mySS.setItem('hosts', JSON.stringify(["user_id_1", "user_id_2"]));
 // mySS.setItem("logged_in", "user_id_1");
 // $.getJSON("/data/users.json", function (json) {
 //     let keys = Object.keys(json);
