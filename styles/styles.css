@@ -58,10 +58,11 @@
 
 }
 
-.margin_bootom_big *{
-    padding-left: 0.4em;
-    padding-right: 0.4em;
+.margin_bootom_big *:not(.map_container, .map_container *){
+    padding-left: 0.2em;
+    padding-right: 0.2em;
 }
+
 .screen_title{
     text-align: center;
 }
@@ -139,7 +140,7 @@ body{
     padding-bottom: 5.5em;
 }
 
-.margin_centered *{
+.margin_centered *:not(.map_container, .map_container *){
     padding-left: 0.2em;
     padding-right: 0.2em;
 }

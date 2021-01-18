@@ -27,7 +27,7 @@ function get_host_show_event_page(eventObj) {
             </div>
         </ul>
     </article>
-    <div class="row d-flex justify-content-around">
+    <div class="row d-flex justify-content-around .map_container">
         <article class="col-5">
             <h4 class="mt-3">When</h4>
             <p class="text-justify">${eventObj.date}</p>
