@@ -1,4 +1,5 @@
 const router = new Navigo('/', true, '#!');
+var map = null;
 mySS = window.sessionStorage;
 let obj = {
     "id": "user_id_1",
@@ -128,6 +129,7 @@ function showHome() {
         showLogin();
     } else {
         app.innerHTML = homePageUser;
+        map = new L.Map('mapid');
         showMap();
         let events = get_events_guests();
         _set_events_guest(events);

@@ -1,5 +1,4 @@
 
-var map = null;
 
 // Form handling
 function handle_login() {
@@ -25,7 +24,6 @@ function handle_login() {
 
         }
     })
-
 }
 
 function showMap() {
@@ -41,9 +39,9 @@ function _map_stuff() {
     let w = parseInt(window.innerWidth * 0.9);
     $('#mapid').width(w);
     $('#mapid').height(w);
-    if (map == null) {
-        map = new L.Map('mapid');
-    }
+    //if (map == null) {
+    //    map = new L.Map('mapid');
+    //}
     map.setView([user_postion.latitude, user_postion.longitude], 13);
 
 
