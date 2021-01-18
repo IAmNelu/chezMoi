@@ -18,7 +18,7 @@ function get_create_page(user) {
                     <label for="EventDescriptionInput">Description</label>
                 </div>
                 <div class="row">
-                    <textarea rows="4" type="text" name="EventDecription" id="EventDescriptionInput"
+                    <textarea rows="4" name="EventDecription" id="EventDescriptionInput"
                         placeholder="Please add a description to your event" required></textarea>
                 </div>
                 <div class="row mt-3">
@@ -33,7 +33,7 @@ function get_create_page(user) {
                 </div>
 
                 <div class="row mt-3">
-                <label for="time_event" class="col-12">When</label>
+                <label for="EventTimeInput" class="col-12">When</label>
                 </div>
                 <div class="row d-flex justify-content-around" id="time_event">
                     <input class="col-5" type="time" name="EventTime" id="EventTimeInput" required>
@@ -57,7 +57,7 @@ function get_create_page(user) {
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button id="btn_create_event" type="button" class="btn btn-primary col-sm-6">Crete Event</button>
+                <button id="btn_create_event" type="button" class="btn btn-primary col-sm-6">Create Event</button>
             </div>
         </form>
     </header>

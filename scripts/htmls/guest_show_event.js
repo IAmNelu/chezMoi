@@ -15,12 +15,12 @@ function get_guest_show_event(ev, usr) {
             <article>
                 <div class="row">
                     <div class="col-12 text-center">
-                        <span>
+                        <div>
                             <i class="fa fa-heart-o text-left fa-2x" id="favourite" aria-hidden="true"></i>
                             <h1 class="profile_name text-center" >
                                 ${ev.name}
                             </h1>
-                        </span><br>
+                        </div>
                         <div class="text-center">
                         
                             <i class="fa fa-star"></i>${usr.ratings}, ${usr.name} <br>
@@ -61,11 +61,11 @@ function get_guest_show_event(ev, usr) {
             <header class="text-center">
                 <h4> Tags </h4>
             </header>
-            <ul class="text-center">
+            <div class="text-center">
                 <div id="tags" class="row mx-2">
                     
                 </div>
-            </ul>
+            </div>
         </article>
     </div>
     <footer class="fixed-bottom">
@@ -104,7 +104,7 @@ function create_event_map(ev, adr) {
 
     var chicken = L.marker([adr.lat, adr.long]).addTo(map);
 
-    chicken.bindPopup(`<img src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
+    chicken.bindPopup(`<img alt="eventImage" src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
         .openPopup();
 }
 
@@ -127,7 +127,7 @@ function setFavourite() {
 function setTags(t) {
     let tags = document.getElementById("tags")
     for (let i in t) {
-        tags.innerHTML += `<li class="col-6">${t[i]}</li>`
+        tags.innerHTML += `<div class="col-6">${t[i]}</div>`
     }
 
 }

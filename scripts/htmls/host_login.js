@@ -3,7 +3,7 @@
 const hostLoginPage = `<!-- Search bar -->
 <div class="row justify-content-center">
     <div class="col-12 my-5 text-center">
-        <img src="images/logo.png" class="img-fluid">
+        <img src="images/logo.png" class="img-fluid" alt="logo">
     </div>
 </div>
 

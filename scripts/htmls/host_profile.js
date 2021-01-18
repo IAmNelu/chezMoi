@@ -35,8 +35,7 @@ function getUserPage(userObj) {
                 <div class="row mb-3">
                     <div class="col-12 text-center">
                         <button class="btn btn-light" type="button" data-toggle="collapse"
-                            onclick="hide_small_description()" data-target="#collapseDescription" aria-expanded="false"
-                            aria-controls="showFullDescription">
+                            onclick="hide_small_description()" data-target="#collapseDescription" aria-expanded="false">
                             Show More
                         </button>
                     </div>

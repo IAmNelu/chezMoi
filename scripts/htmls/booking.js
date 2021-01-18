@@ -9,11 +9,11 @@ function booking_page(ev) {
                 <h2 class="text-center col-10">Payment</h2>
             </div>
             <div class="col-12 text-center">
-                <span>
+                <div>
                     <h1 class="profile_name text-center">
                         ${ev.name}
                     </h1>
-                </span><br>
+                </div><br>
                 <div class="text-center">
                     <i class="fa fa-clock-o"></i>${ev.price} -
                     <i class="fa fa-calendar"></i> ${ev.date}<br>
@@ -22,15 +22,15 @@ function booking_page(ev) {
 
             </div>
             <div class="container py-2">
-                <form action="" id="booking_form">
+                <form id="booking_form">
                     <div class="form-group">
 
 
                         <div class="row mt-3">
                             <label for="BookingGuestInput" class="col-7 text-center">Number of guests:</label>
                             <select class="col-4" name="BookingGuestInput"
-                                id="BookingGuestInput" required>
-                                <option class="active" value="1">1</option>
+                                id="BookingGuestInput">
+                                <option class="active" value="1" selected>1</option>
                             </select>
                         </div>
                         <div>
@@ -62,15 +62,15 @@ function booking_page(ev) {
                                     <div id="credit-card" class="tab-pane fade show active pt-3">
                                         <div class="form-group">
                                             <label for="username">
-                                                <h6>Card Owner</h6>
-                                            </label> <input type="text" name="username" placeholder="Card Owner Name"
+                                                <b>Card Owner</b>
+                                            </label> <input type="text" id="username" name="username" placeholder="Card Owner Name"
                                                 required class="form-control ">
                                         </div>
                                         <div class="form-group">
                                             <label for="cardNumber">
-                                                <h6>Card number</h6>
+                                                <b>Card number</b>
                                             </label>
-                                            <div class="input-group"> <input type="text" name="cardNumber"
+                                            <div class="input-group"> <input type="text" name="cardNumber" id="cardNumber"
                                                     placeholder="Valid card number" class="form-control " required>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text text-muted">
@@ -86,11 +86,11 @@ function booking_page(ev) {
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-8">
-                                                <div class="form-group"> <label><span class="hidden-xs">
-                                                            <h6>Expiration Date</h6>
+                                                <div class="form-group"> <label class="hidden-xs">
+                                                            <b>Expiration Date</b>
                                                             <div id="error" class="d-none warning"> Check your expiration date </div>
 
-                                                        </span></label>
+                                                        </label>
                                                     <div class="input-group"> <input id="month" type="number" placeholder="MM"
                                                             name="month" class="form-control" max=12 min=0 required> <input type="number"
                                                             placeholder="YY" name="year" class="form-control" id="year" max=99 min=0 required>
@@ -99,8 +99,8 @@ function booking_page(ev) {
                                             </div>
                                             <div class="col-sm-4 align-bottom">
                                                 <div class="form-group"> 
-                                                        <h6>CVV <br>(3 digit number)
-                                                        </h6>
+                                                        <b>CVV <br>(3 digit number)
+                                                        </b>
                                                     </label> <input type="text" pattern="[0-9]{3}" required class="form-control">
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@ function booking_page(ev) {
                                     </div> <!-- End -->
                                     <!-- Paypal info -->
                                     <div id="paypal" class="tab-pane fade pt-3">
-                                        <h6 class="pb-2">Select your paypal account type</h6>
+                                        <b class="pb-2">Select your paypal account type</b>
                                         <div class="form-group "> <label class="radio-inline"> <input type="radio"
                                                     name="optradio" checked> Domestic </label> <label
                                                 class="radio-inline">

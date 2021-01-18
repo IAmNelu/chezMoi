@@ -67,7 +67,7 @@ function _map_stuff() {
                 var hostName = user.name;
                 var hostPicUrl = user.pro_pric;
                 var cooking_mama = L.marker([hostLat, hostLong]).addTo(map);
-                cooking_mama.bindPopup('<img src="' + hostPicUrl + '" class="w-100"><br><br><b>' + hostName + '</b>')
+                cooking_mama.bindPopup('<img alt="eventImage" src="' + hostPicUrl + '" class="w-100"><br><br><b>' + hostName + '</b>')
                     .openPopup();
             }
         }

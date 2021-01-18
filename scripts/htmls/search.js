@@ -18,7 +18,7 @@ const searchPage = `
                 <label for="wordToSearchSpecific" class="">Search by word</label>
               </span>
               <span class="col-6">
-                <input type="string" class="form-control" id="wordToSearchSpecific" placeholder="What to eat?">
+                <input type="text" class="form-control" id="wordToSearchSpecific" placeholder="What to eat?">
               </span>
             </div> 
           </div>
@@ -78,7 +78,7 @@ const searchPage = `
 
 
           <div class="form-group row">
-            <label for="time_event" class="col-12">Maximum Date</label>
+            <label for="searchTimeInput" class="col-12">Maximum Date</label>
             <input class="col-5" type="time" name="searchTime" id="searchTimeInput">
             <input class="col-6" type="date" name="searchDate" id="searchDateInput">
           </div>

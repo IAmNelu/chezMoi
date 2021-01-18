@@ -21,11 +21,11 @@ function get_host_show_event_page(eventObj) {
     <header class="text-center">
             <h4> Tags </h4>
         </header>
-        <ul class="text-center">
+        <div class="text-center">
             <div class="row mx-2">
             ${getTags(eventObj.tags)}
             </div>
-        </ul>
+        </div>
     </article>
     <div class="row d-flex justify-content-around">
         <article class="col-5">
@@ -83,7 +83,7 @@ function getTags(tag_list) {
     let ret = "";
     for (let _i = 0; _i < tag_list.length; _i++) {
         const tag = tag_list[_i];
-        let new_tag = '<li class="col-6 text-left">' + tag + "</li>"
+        let new_tag = '<div class="col-6 text-left">' + tag + "</div>"
         ret += new_tag;
     }
     return ret;
@@ -104,7 +104,7 @@ function create_event_map_h(ev, adr) {
 
     var chicken = L.marker([adr.lat, adr.long]).addTo(map);
 
-    chicken.bindPopup(`<img src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
+    chicken.bindPopup(`<img alt="eventPitct" src="${ev.picture}" class="w-100"><br><br><b>${ev.name}</b>`)
         .openPopup();
 
     $('#mapid_h').width(ww * 0.8);
