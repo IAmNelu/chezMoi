@@ -60,8 +60,8 @@ let obj_2 = {
     "name": "Remi",
     "ratings": 4.2,
     "n_ratings": 20,
-    "pro_pric": "../images/remy.jpg",
-    "bcg_pic": "../images/chez_gusteau.jpg",
+    "pro_pric": "cheMoi/images/remy.jpg",
+    "bcg_pic": "chezMoi/images/chez_gusteau.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
     "addresses": {
         "adr1": {
@@ -81,7 +81,7 @@ let obj_2 = {
             "date": "21/01/2021",
             "hour": "20:00",
             "adr": "adr1",
-            "picture": "../images/Ratatouille.jpg",
+            "picture": "cheMoi/images/Ratatouille.jpg",
             "tags": [
                 "dinner",
                 "gluten-free",
@@ -95,19 +95,6 @@ let obj_2 = {
 if (!mySS.getItem('user_id_1')) mySS.setItem('user_id_1', JSON.stringify(obj));
 if (!mySS.getItem('user_id_2')) mySS.setItem('user_id_2', JSON.stringify(obj_2));
 mySS.setItem('hosts', JSON.stringify(["user_id_1", "user_id_2"]));
-// mySS.setItem("logged_in", "user_id_1");
-// $.getJSON("/data/users.json", function (json) {
-//     let keys = Object.keys(json);
-//     for (let _i = 0; _i < keys.length; _i++) {
-//         const k = keys[_i];
-//         const v = JSON.stringify(json[k]);
-//         mySS.setItem(k, v);
-
-//     }
-//     mySS.setItem('hosts', JSON.stringify(keys));
-//     return;
-// });
-
 
 let logged_in = "";
 
@@ -133,12 +120,6 @@ function showHome() {
         showMap();
         let events = get_events_guests();
         _set_events_guest(events);
-        // let searchButton = document.getElementById('searchButton');
-        // searchButton.onclick = () => goToSearch();
-        // let wordSearchForm = document.getElementById('wordSearchForm');
-        // wordSearchForm.onsubmit = () => searchWordSubmit();
-        // let goToProfile = document.getElementById('goToProfile');
-        // goToProfile.onclick = () => handleGoToProfile();
         add_event_listeners_search_simple();
     }
 }
@@ -169,8 +150,6 @@ function showSearch() {
         initializeTags();
         let backToHome = document.getElementById('backToHome');
         backToHome.onclick = () => goToHome();
-        // let searchForm = document.getElementById('searchForm');
-        // searchForm.onsubmit = () => submitSearch();
         add_event_listeners_search_complex();
     }
 }
@@ -182,6 +161,16 @@ function showHostProfile() {
         let user = get_user();
         app.innerHTML = getUserPage(user);
         _set_imgs_profile(user.pro_pric, user.bcg_pic);
+
+        window.onload = function () {
+            adjust_header();
+            adjust_profile();
+        };
+
+        window.onresize = function () {
+            adjust_header();
+            adjust_profile();
+        }
 
         _set_events(user.events);
         adjust_header();
