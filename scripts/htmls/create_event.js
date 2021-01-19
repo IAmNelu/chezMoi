@@ -125,7 +125,7 @@ function _add_event_function(user) {
                 "date": date_cs[2] + '/' + date_cs[1] + '/' + date_cs[0],
                 "hour": form["EventTimeInput"].value,
                 "adr": adr_key,
-                "picture": "chezMoi/images/placeholder.png",
+                "picture": "./images/placeholder.png",
                 "tags": tags
             }
             user.events.push(new_ev);

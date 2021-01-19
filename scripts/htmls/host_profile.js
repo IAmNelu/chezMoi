@@ -103,7 +103,7 @@ function getOneEvent(eventObj) {
                             </span>
                         </div>
                         
-                        <button class="col-5  mb-1 mr-2 btn btn-light align-self-center edit_btn" onclick="event.stopPropagation(); edit_event('${eventObj.id}');"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button>
+                        
                     </div>
                 </div>
             </div>

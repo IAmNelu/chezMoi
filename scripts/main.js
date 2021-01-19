@@ -1,4 +1,4 @@
-const router = new Navigo('/', true, '#!');
+const router = new Navigo('/chezMoi', true, '#!');
 var map = null;
 mySS = window.sessionStorage;
 let obj = {
@@ -6,8 +6,8 @@ let obj = {
     "name": "Cooking MAMA",
     "ratings": 4.9,
     "n_ratings": 20,
-    "pro_pric": "chezMoi/images/profile_cooking_mama.png",
-    "bcg_pic": "chezMoi/images/app_cooking_mama.jpg",
+    "pro_pric": "./images/profile_cooking_mama.png",
+    "bcg_pic": "./images/app_cooking_mama.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
     "addresses": {
         "adr1": {
@@ -27,7 +27,7 @@ let obj = {
             "date": "25/01/2021",
             "hour": "12:00",
             "adr": "adr1",
-            "picture": "chezMoi/images/chicken_meal.jpg",
+            "picture": "./images/chicken_meal.jpg",
             "tags": [
                 "meat",
                 "lunch",
@@ -45,7 +45,7 @@ let obj = {
             "date": "22/01/2021",
             "hour": "18:00",
             "adr": "adr1",
-            "picture": "chezMoi/images/fish_meal.png",
+            "picture": "./images/fish_meal.png",
             "tags": [
                 "gluten-free",
                 "bio",
@@ -60,8 +60,8 @@ let obj_2 = {
     "name": "Remi",
     "ratings": 4.2,
     "n_ratings": 20,
-    "pro_pric": "cheMoi/images/remy.jpg",
-    "bcg_pic": "chezMoi/images/chez_gusteau.jpg",
+    "pro_pric": "./images/remy.jpg",
+    "bcg_pic": "./images/chez_gusteau.jpg",
     "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui suscipit reiciendis at possimus blanditiis soluta, maiores est, placeat praesentium, omnis ut minima vero. Animi explicabo cum sit iusto laborum vel eius libero eos ipsa aliquam harum amet, minima, iure pariatur nostrum nihil consequuntur, enim debitis similique. Quam quidem, culpa ipsa assumenda explicabo numquam reprehenderit asperiores recusandae soluta, fugiat iste hic. Nisi obcaecati iusto explicabo atque illo labore eligendi asperiores repellendus? Suscipit veniam, non deserunt labore sed voluptate, id quam consequuntur illo in sit libero quae reprehenderit sunt? Deserunt, soluta repellendus corrupti fugiat ea doloremque. Commodi iusto alias fugit laborum facere.",
     "addresses": {
         "adr1": {
@@ -81,7 +81,7 @@ let obj_2 = {
             "date": "21/01/2021",
             "hour": "20:00",
             "adr": "adr1",
-            "picture": "cheMoi/images/Ratatouille.jpg",
+            "picture": "./images/Ratatouille.jpg",
             "tags": [
                 "dinner",
                 "gluten-free",
@@ -118,6 +118,8 @@ function showHome() {
         app.innerHTML = homePageUser;
         map = new L.Map('mapid');
         showMap();
+
+
         let events = get_events_guests();
         _set_events_guest(events);
         add_event_listeners_search_simple();

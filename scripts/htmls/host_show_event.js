@@ -30,12 +30,16 @@ function get_host_show_event_page(eventObj) {
     <div class="row d-flex justify-content-around .map_container">
         <article class="col-5">
             <h4 class="mt-3">When</h4>
-            <p class="text-justify">${eventObj.date}</p>
-
+            <p class="text-left">
+                <i class="fa fa-calendar"></i> ${eventObj.date}<br>
+                <i class="fa fa-clock-o"></i> ${eventObj.hour} 
+            </p>
         </article>
         <article class="col-5">
             <h4 class="mt-3">Who</h4>
-            <p class="text-justify">${eventObj.actual_guests}/${eventObj.max_guests}</p>
+            <p class="text-left">
+            <i class="fa fa-users btn_ico" aria-hidden="true"></i> ${eventObj.actual_guests}/${eventObj.max_guests}
+            </p>
         </article>
     </div>
     <div class="row d-flex justify-content-around">
